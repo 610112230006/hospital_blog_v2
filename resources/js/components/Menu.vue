@@ -204,6 +204,48 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="dropdown"><span class="dropdown-arrow"></span><a href="content-by-cate?id_cate=3">งานคุ้มครองจริยธรรม</a>
+                                <ul class="dropdown-menu" style="">
+                                    <li class="dropdown-submenu"><span class="dropdown-arrow"></span><span class="dropdown-menu-title-only"><a href="#"><p class="text-Dark">Anti Corruption</p></a></span>
+                                        <ul class="dropdown-menu menu-invert" style="">
+                                            <li><a href="content-by-subcate?id_subcate=47">การจัดการความเสี่ยงด้านทุจริต</a></li>
+                                            <li><a href="content-by-subcate?id_subcate=48">มาตรการป้องกันการทุจริต</a></li>
+                                            <li><a href="content-by-subcate?id_subcate=49">การจัดการผลประโยชน์ทับซ้อน</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu"><span class="dropdown-arrow"></span><span class="dropdown-menu-title-only"><a href="content-by-subcate?id_subcate=50"><p class="text-Dark">แผนปฏิบัติราชการ</p></a></span>
+                                        <ul class="dropdown-menu menu-invert" style="">
+                                            <li><a href="content-by-subcate?id_subcate=50">2564 (ชาติ–กระทรวง–กรม รายละเอียด การรายงานผล)</a></li>                                            
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu"><span class="dropdown-arrow"></span><span class="dropdown-menu-title-only"><a href="content-by-subcate?id_subcate=51"><p class="text-Dark">โครงการส่งเสริมคุณธรรมปัองกันและปราบปรามการทุจริต</p></a></span>
+                                        <ul class="dropdown-menu menu-invert" style="">
+                                            <li><a href="content-by-subcate?id_subcate=51">2564 (รายละเอียด–รายงานผล)</a></li>                                            
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu"><span class="dropdown-arrow"></span><span class="dropdown-menu-title-only"><a href="content-by-subcate?id_subcate=52"><p class="text-Dark">ITA</p></a></span>
+                                        <ul class="dropdown-menu menu-invert" style="">
+                                            <li><a href="content-by-subcate?id_subcate=52">2564 (รายละเอียด–การ ดําเนินงาน–ผล)</a></li>                                            
+                                        </ul>
+                                    </li>
+                                    
+                                    <li><a href="content-by-subcate?id_subcate=53"><p class="text-Dark">คํารับรองการปฏิบัติราชการ</p></a></li>
+                                    <li class="dropdown-submenu"><span class="dropdown-arrow"></span><span class="dropdown-menu-title-only"><a href="content-by-subcate?id_subcate=54"><p class="text-Dark">คุ้มครองจริยธรรม</p></a></span>
+                                        <ul class="dropdown-menu menu-invert" style="">
+                                            <li><a href="">การดําเนินงานของคณะกรรมการจริยธรรม</a></li>                                            
+                                            <li><a href="">ประมวลจริยธรรม</a></li>                                            
+                                            <li><a href="">ข้อกําหนดจริยธรรม</a></li>                                            
+                                            <li><a href="">ธรรมาภิบาล(เปิดเผยข้อมูล)</a></li>                                            
+                                            <li><a href="">องค์กรคุณธรรม</a></li>                                            
+                                            <li><a href="">องค์กรต้นแบบด้านสิทธิมนุษยชน</a></li>                                            
+                                            <li><a href="">ความเสมอภาค หญิง-ชาย</a></li>                                            
+                                        </ul>
+                                    </li>
+                                    <li><a href="content-by-subcate?id_subcate=55"><p class="text-Dark">สื่อเผยแพร่</p></a></li>
+                                    <li><a href="content-by-subcate?id_subcate=56"><p class="text-Dark">การประชุม อบรม</p></a></li>
+                                </ul>
+                            </li>
+
                             <li><a href="content-by-cate?id_cate=4">ร้องเรียน/ร้องทุกข์</a>
                             
                         </li>

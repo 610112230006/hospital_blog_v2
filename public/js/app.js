@@ -4896,6 +4896,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -45499,6 +45541,236 @@ var staticRenderFns = [
                       "a",
                       { attrs: { href: "content-by-subcate?id_subcate=56" } },
                       [_vm._v("การประชุม อบรม")]
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "dropdown" }, [
+                _c("span", { staticClass: "dropdown-arrow" }),
+                _c("a", { attrs: { href: "content-by-cate?id_cate=3" } }, [
+                  _vm._v("งานคุ้มครองจริยธรรม")
+                ]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "dropdown-menu" }, [
+                  _c("li", { staticClass: "dropdown-submenu" }, [
+                    _c("span", { staticClass: "dropdown-arrow" }),
+                    _c("span", { staticClass: "dropdown-menu-title-only" }, [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _c("p", { staticClass: "text-Dark" }, [
+                          _vm._v("Anti Corruption")
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "dropdown-menu menu-invert" }, [
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "content-by-subcate?id_subcate=47" }
+                          },
+                          [_vm._v("การจัดการความเสี่ยงด้านทุจริต")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "content-by-subcate?id_subcate=48" }
+                          },
+                          [_vm._v("มาตรการป้องกันการทุจริต")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "content-by-subcate?id_subcate=49" }
+                          },
+                          [_vm._v("การจัดการผลประโยชน์ทับซ้อน")]
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "dropdown-submenu" }, [
+                    _c("span", { staticClass: "dropdown-arrow" }),
+                    _c("span", { staticClass: "dropdown-menu-title-only" }, [
+                      _c(
+                        "a",
+                        { attrs: { href: "content-by-subcate?id_subcate=50" } },
+                        [
+                          _c("p", { staticClass: "text-Dark" }, [
+                            _vm._v("แผนปฏิบัติราชการ")
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "dropdown-menu menu-invert" }, [
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "content-by-subcate?id_subcate=50" }
+                          },
+                          [
+                            _vm._v(
+                              "2564 (ชาติ–กระทรวง–กรม รายละเอียด การรายงานผล)"
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "dropdown-submenu" }, [
+                    _c("span", { staticClass: "dropdown-arrow" }),
+                    _c("span", { staticClass: "dropdown-menu-title-only" }, [
+                      _c(
+                        "a",
+                        { attrs: { href: "content-by-subcate?id_subcate=51" } },
+                        [
+                          _c("p", { staticClass: "text-Dark" }, [
+                            _vm._v(
+                              "โครงการส่งเสริมคุณธรรมปัองกันและปราบปรามการทุจริต"
+                            )
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "dropdown-menu menu-invert" }, [
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "content-by-subcate?id_subcate=51" }
+                          },
+                          [_vm._v("2564 (รายละเอียด–รายงานผล)")]
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "dropdown-submenu" }, [
+                    _c("span", { staticClass: "dropdown-arrow" }),
+                    _c("span", { staticClass: "dropdown-menu-title-only" }, [
+                      _c(
+                        "a",
+                        { attrs: { href: "content-by-subcate?id_subcate=52" } },
+                        [_c("p", { staticClass: "text-Dark" }, [_vm._v("ITA")])]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "dropdown-menu menu-invert" }, [
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "content-by-subcate?id_subcate=52" }
+                          },
+                          [_vm._v("2564 (รายละเอียด–การ ดําเนินงาน–ผล)")]
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c(
+                      "a",
+                      { attrs: { href: "content-by-subcate?id_subcate=53" } },
+                      [
+                        _c("p", { staticClass: "text-Dark" }, [
+                          _vm._v("คํารับรองการปฏิบัติราชการ")
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "dropdown-submenu" }, [
+                    _c("span", { staticClass: "dropdown-arrow" }),
+                    _c("span", { staticClass: "dropdown-menu-title-only" }, [
+                      _c(
+                        "a",
+                        { attrs: { href: "content-by-subcate?id_subcate=54" } },
+                        [
+                          _c("p", { staticClass: "text-Dark" }, [
+                            _vm._v("คุ้มครองจริยธรรม")
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "dropdown-menu menu-invert" }, [
+                      _c("li", [
+                        _c("a", { attrs: { href: "" } }, [
+                          _vm._v("การดําเนินงานของคณะกรรมการจริยธรรม")
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { attrs: { href: "" } }, [
+                          _vm._v("ประมวลจริยธรรม")
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { attrs: { href: "" } }, [
+                          _vm._v("ข้อกําหนดจริยธรรม")
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { attrs: { href: "" } }, [
+                          _vm._v("ธรรมาภิบาล(เปิดเผยข้อมูล)")
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { attrs: { href: "" } }, [
+                          _vm._v("องค์กรคุณธรรม")
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { attrs: { href: "" } }, [
+                          _vm._v("องค์กรต้นแบบด้านสิทธิมนุษยชน")
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", { attrs: { href: "" } }, [
+                          _vm._v("ความเสมอภาค หญิง-ชาย")
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c(
+                      "a",
+                      { attrs: { href: "content-by-subcate?id_subcate=55" } },
+                      [
+                        _c("p", { staticClass: "text-Dark" }, [
+                          _vm._v("สื่อเผยแพร่")
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c(
+                      "a",
+                      { attrs: { href: "content-by-subcate?id_subcate=56" } },
+                      [
+                        _c("p", { staticClass: "text-Dark" }, [
+                          _vm._v("การประชุม อบรม")
+                        ])
+                      ]
                     )
                   ])
                 ])
