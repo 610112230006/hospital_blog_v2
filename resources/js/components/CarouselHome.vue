@@ -1,0 +1,41 @@
+<template lang="">
+    <div>
+        <carousel
+            :perPage="1"
+            :loop="true"
+            :autoplayHoverPause="true"
+            :autoplay="true"
+            :navigationEnabled="true"
+            style="width:100%"
+        >
+            <slide>
+                <img
+                    src="images/slider/slider1.JPG"
+                    width="100%"
+                    class="img-fluid"
+                    alt=""
+                />
+            </slide>
+            <slide>
+                <img
+                    src="images/slider/slider2.JPG"
+                    width="100%"
+                    class="img-fluid"
+                    alt=""
+                />
+            </slide>
+            <slide>
+                <img
+                    src="images/slider/slider3.JPG"
+                    width="100%"
+                    class="img-fluid"
+                    alt=""
+                />
+            </slide>
+        </carousel>
+    </div>
+</template>
+<script>
+export default {};
+</script>
+<style lang=""></style>
