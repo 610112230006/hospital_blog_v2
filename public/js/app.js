@@ -4081,7 +4081,6 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios.get("api/cont-new-home").then(function (res) {
-      console.log(res.data);
       _this.newContents = res.data;
     })["catch"](function (err) {
       console.log(err.response.data);
@@ -4091,6 +4090,11 @@ __webpack_require__.r(__webpack_exports__);
     });
     axios.get("api/get-statistic-all").then(function (res) {
       _this.statistics = res.data;
+    })["catch"](function (err) {
+      console.log(err.response.data);
+    });
+    axios.get("api/get-document-all").then(function (res) {
+      console.log(res.data);
     })["catch"](function (err) {
       console.log(err.response.data);
     });

@@ -73,3 +73,4 @@ Route::get('del-one-image/{id_file}', 'Api\ShowController@DelOneImage');
 Route::get('del-one-file/{id_file}', 'Api\ShowController@DelOneFile');
 Route::get('get-one-cate/{id_cate}', 'Api\ShowController@ShowOneCate');
 Route::get('get-one-subcate/{id_subcate}', 'Api\ShowController@ShowOneSubCate');
+Route::get('get-document-all', 'Api\ShowController@ShowDocumentAll');

@@ -237,8 +237,7 @@ export default {
    
 
     mounted() {
-        axios.get("api/cont-new-home").then(res => {
-            console.log(res.data);
+        axios.get("api/cont-new-home").then(res => {            
             this.newContents = res.data;
         }).catch(err=>{
             console.log(err.response.data)
@@ -248,7 +247,11 @@ export default {
         });
         axios.get("api/get-statistic-all").then(res => {
             this.statistics = res.data;
-    
+        }).catch((err)=>{
+            console.log(err.response.data)
+        });
+        axios.get("api/get-document-all").then(res => {
+            console.log(res.data)
         }).catch((err)=>{
             console.log(err.response.data)
         });

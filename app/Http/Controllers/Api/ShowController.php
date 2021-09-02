@@ -277,4 +277,9 @@ class ShowController extends Controller
         
         return response()->json($data);
     }
+    public function ShowDocumentAll()
+    {
+        $data = DB::select(``);
+        return response()->json($data);
+    }
 }
