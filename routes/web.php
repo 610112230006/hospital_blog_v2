@@ -60,7 +60,7 @@ Route::get('/edit-content', 'Api\ContentController@edit');
 Route::get('/detail-content', 'DetailController@show_detail');
 
 
-Route::get('/content', 'Api\ContentController@store');
+Route::post('/content', 'Api\ContentController@store');
 Route::post('/update-content/{id_content}', 'Api\ContentController@update');
 
 

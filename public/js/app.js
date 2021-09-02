@@ -2560,13 +2560,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   data: function data() {
@@ -2621,8 +2614,8 @@ __webpack_require__.r(__webpack_exports__);
       for (var i = 0; i < selectedFiles.length; i++) {
         var convert_KB = selectedFiles[i].size / Math.pow(1024, 2);
 
-        if (convert_KB > 20) {
-          this.$swal.fire("ไม่สำเร็จ!", "ไฟล์ขนาดใหญ่เกินไป (สูงสุด 20 MB!)", "error");
+        if (convert_KB > 50) {
+          this.$swal.fire("ไม่สำเร็จ!", "ไฟล์ขนาดใหญ่เกินไป (สูงสุด 50 MB!)", "error");
           e.target.files = null;
           this.selectedFiles = null;
           break;
@@ -2642,8 +2635,8 @@ __webpack_require__.r(__webpack_exports__);
       for (var i = 0; i < selectedFiles.length; i++) {
         var convert_KB = selectedFiles[i].size / Math.pow(1024, 2);
 
-        if (convert_KB > 20) {
-          this.$swal.fire("ไม่สำเร็จ!", "ไฟล์ขนาดใหญ่เกินไป (สูงสุด 20 MB!)", "error");
+        if (convert_KB > 50) {
+          this.$swal.fire("ไม่สำเร็จ!", "ไฟล์ขนาดใหญ่เกินไป (สูงสุด 50 MB!)", "error");
           e.target.files = null;
           this.selectedFiles = null;
           break;
@@ -2670,15 +2663,22 @@ __webpack_require__.r(__webpack_exports__);
         time_show: fixTime,
         detail: CKEDITOR.instances.detail.getData()
       };
+      axios.post("content", data).then(function (res) {
+        var id_content = res.data.id;
 
-      if (this.images.length == 0) {
-        this.$swal.fire("ไม่สำเร็จ!", "กรุณาเลือกรูป", "error");
-      } else {
-        axios.post("content", data).then(function (res) {
-          var id_content = res.data.id;
+        for (var i = 0; i < _this2.images.length; i++) {
+          _this2.formImg.append("images[]", _this2.images[i]);
+        }
 
-          for (var i = 0; i < _this2.images.length; i++) {
-            _this2.formImg.append("images[]", _this2.images[i]);
+        var config = {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        };
+        document.getElementById("upload-img").value = [];
+        axios.post("api/upload-image?content_id=".concat(id_content), _this2.formImg, config).then(function (response) {
+          for (var _i = 0; _i < _this2.files.length; _i++) {
+            _this2.formFile.append("file[]", _this2.files[_i]);
           }
 
           var config = {
@@ -2686,40 +2686,28 @@ __webpack_require__.r(__webpack_exports__);
               "Content-Type": "multipart/form-data"
             }
           };
-          document.getElementById("upload-img").value = [];
-          axios.post("api/upload-image?content_id=".concat(id_content), _this2.formImg, config).then(function (response) {
-            for (var _i = 0; _i < _this2.files.length; _i++) {
-              _this2.formFile.append("file[]", _this2.files[_i]);
-            }
-
-            var config = {
-              headers: {
-                "Content-Type": "multipart/form-data"
-              }
-            };
-            document.getElementById("upload-file").value = [];
-            axios.post("api/upload-file?content_id=".concat(id_content), _this2.formFile, config).then(function (response) {
-              _this2.$swal.fire({
-                position: "center-center",
-                icon: "success",
-                title: "สำเร็จ",
-                showConfirmButton: false,
-                timer: 1000
-              }).then(function () {
-                window.location.href = "/";
-              });
-            })["catch"](function (error) {
-              _this2.errorFile = error.response.data.error;
-              console.log(error.response);
+          document.getElementById("upload-file").value = [];
+          axios.post("api/upload-file?content_id=".concat(id_content), _this2.formFile, config).then(function (response) {
+            _this2.$swal.fire({
+              position: "center-center",
+              icon: "success",
+              title: "สำเร็จ",
+              showConfirmButton: false,
+              timer: 1000
+            }).then(function () {
+              window.location.href = "/";
             });
-          })["catch"](function (err) {
-            console.log(err.response);
+          })["catch"](function (error) {
+            _this2.errorFile = error.response.data.error;
+            console.log(error.response);
           });
-        })["catch"](function (error) {
-          _this2.error = error.response.data.errors;
-          console.log(error.response);
+        })["catch"](function (err) {
+          console.log(err.response);
         });
-      }
+      })["catch"](function (error) {
+        _this2.error = error.response.data.errors;
+        console.log(error.response);
+      });
     }
   }
 });
@@ -3572,16 +3560,23 @@ __webpack_require__.r(__webpack_exports__);
         time_show: this.content.time_show,
         detail: CKEDITOR.instances.detail.getData()
       };
+      axios.post("update-content/".concat(this.id_content), data).then(function (res) {
+        console.log(res.data);
+        var id_content = res.data.id;
 
-      if (this.images.length == 0 && this.showImages.length == 0) {
-        this.$swal.fire("ไม่สำเร็จ!", "กรุณาเลือกรูปภาพ", "error");
-      } else {
-        axios.post("update-content/".concat(this.id_content), data).then(function (res) {
-          console.log(res.data);
-          var id_content = res.data.id;
+        for (var i = 0; i < _this5.images.length; i++) {
+          _this5.formImg.append("images[]", _this5.images[i]);
+        }
 
-          for (var i = 0; i < _this5.images.length; i++) {
-            _this5.formImg.append("images[]", _this5.images[i]);
+        var config = {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        };
+        document.getElementById("upload-img").value = [];
+        axios.post("api/upload-image?content_id=".concat(id_content), _this5.formImg, config).then(function (response) {
+          for (var _i = 0; _i < _this5.files.length; _i++) {
+            _this5.formFile.append("file[]", _this5.files[_i]);
           }
 
           var config = {
@@ -3589,40 +3584,28 @@ __webpack_require__.r(__webpack_exports__);
               "Content-Type": "multipart/form-data"
             }
           };
-          document.getElementById("upload-img").value = [];
-          axios.post("api/upload-image?content_id=".concat(id_content), _this5.formImg, config).then(function (response) {
-            for (var _i = 0; _i < _this5.files.length; _i++) {
-              _this5.formFile.append("file[]", _this5.files[_i]);
-            }
-
-            var config = {
-              headers: {
-                "Content-Type": "multipart/form-data"
-              }
-            };
-            document.getElementById("upload-file").value = [];
-            axios.post("api/upload-file?content_id=".concat(id_content), _this5.formFile, config).then(function (response) {
-              _this5.$swal.fire({
-                position: "center-center",
-                icon: "success",
-                title: "สำเร็จ",
-                showConfirmButton: false,
-                timer: 1000
-              }).then(function () {
-                window.location.href = "/";
-              });
-            })["catch"](function (error) {
-              _this5.errorFile = error.response.data.error;
-              console.log(error.response);
+          document.getElementById("upload-file").value = [];
+          axios.post("api/upload-file?content_id=".concat(id_content), _this5.formFile, config).then(function (response) {
+            _this5.$swal.fire({
+              position: "center-center",
+              icon: "success",
+              title: "สำเร็จ",
+              showConfirmButton: false,
+              timer: 1000
+            }).then(function () {
+              window.location.href = "/";
             });
-          })["catch"](function (err) {
-            console.log(err.response);
+          })["catch"](function (error) {
+            _this5.errorFile = error.response.data.error;
+            console.log(error.response);
           });
-        })["catch"](function (error) {
-          _this5.error = error.response.data.errors;
-          console.log(error.response);
+        })["catch"](function (err) {
+          console.log(err.response);
         });
-      }
+      })["catch"](function (error) {
+        _this5.error = error.response.data.errors;
+        console.log(error.response);
+      });
     }
   }
 });
@@ -42791,7 +42774,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("p", [
           _vm._v(
-            "\n                                        *ขนาดของไฟล์ใหม่: 20เมกะไบต์\n                                    "
+            "\n                                        *ขนาดของไฟล์ใหม่: 50เมกะไบต์\n                                    "
           )
         ])
       ])

@@ -94,14 +94,7 @@
                                     id="upload-img"
                                     @change="changImage"
                                 />
-                                <!-- <div v-for="(image, key) in images" :key="key">
-                                    <img
-                                        :src="image.src"
-                                        class="preview"
-                                        style="width:200px;"
-                                    />
-                                    {{ image.file.name }}
-                                </div> -->
+                                
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">
@@ -110,7 +103,7 @@
                                             เพิ่มไฟล์
                                         </p>
                                         <p>
-                                            *ขนาดของไฟล์ใหม่: 20เมกะไบต์
+                                            *ขนาดของไฟล์ใหม่: 50เมกะไบต์
                                         </p>
                                     </div>
                                 </label>
@@ -221,8 +214,7 @@ export default {
                     .catch(err => console.log(err.response));
             }
         });
-        console.log(this.optionSubCates)
-        
+        console.log(this.optionSubCates);
     },
 
     methods: {
@@ -235,10 +227,10 @@ export default {
 
             for (let i = 0; i < selectedFiles.length; i++) {
                 let convert_KB = selectedFiles[i].size / Math.pow(1024, 2);
-                if (convert_KB > 20) {
+                if (convert_KB > 50) {
                     this.$swal.fire(
                         "ไม่สำเร็จ!",
-                        "ไฟล์ขนาดใหญ่เกินไป (สูงสุด 20 MB!)",
+                        "ไฟล์ขนาดใหญ่เกินไป (สูงสุด 50 MB!)",
                         "error"
                     );
                     e.target.files = null;
@@ -256,10 +248,10 @@ export default {
             }
             for (let i = 0; i < selectedFiles.length; i++) {
                 let convert_KB = selectedFiles[i].size / Math.pow(1024, 2);
-                if (convert_KB > 20) {
+                if (convert_KB > 50) {
                     this.$swal.fire(
                         "ไม่สำเร็จ!",
-                        "ไฟล์ขนาดใหญ่เกินไป (สูงสุด 20 MB!)",
+                        "ไฟล์ขนาดใหญ่เกินไป (สูงสุด 50 MB!)",
                         "error"
                     );
                     e.target.files = null;
@@ -283,76 +275,67 @@ export default {
                 time_show: fixTime,
                 detail: CKEDITOR.instances.detail.getData()
             };
-            if (this.images.length == 0) {
-                this.$swal.fire("ไม่สำเร็จ!", "กรุณาเลือกรูป", "error");
-            } else {
-                axios
-                    .post("content", data)
-                    .then(res => {
-                        const id_content = res.data.id;
 
-                        for (let i = 0; i < this.images.length; i++) {
-                            this.formImg.append("images[]", this.images[i]);
-                        }
-                        const config = {
-                            headers: { "Content-Type": "multipart/form-data" }
-                        };
-                        document.getElementById("upload-img").value = [];
-                        axios
-                            .post(
-                                `api/upload-image?content_id=${id_content}`,
-                                this.formImg,
-                                config
-                            )
-                            .then(response => {
-                                for (let i = 0; i < this.files.length; i++) {
-                                    this.formFile.append(
-                                        "file[]",
-                                        this.files[i]
-                                    );
+            axios
+                .post("content", data)
+                .then(res => {
+                    const id_content = res.data.id;
+
+                    for (let i = 0; i < this.images.length; i++) {
+                        this.formImg.append("images[]", this.images[i]);
+                    }
+                    const config = {
+                        headers: { "Content-Type": "multipart/form-data" }
+                    };
+                    document.getElementById("upload-img").value = [];
+                    axios
+                        .post(
+                            `api/upload-image?content_id=${id_content}`,
+                            this.formImg,
+                            config
+                        )
+                        .then(response => {
+                            for (let i = 0; i < this.files.length; i++) {
+                                this.formFile.append("file[]", this.files[i]);
+                            }
+                            const config = {
+                                headers: {
+                                    "Content-Type": "multipart/form-data"
                                 }
-                                const config = {
-                                    headers: {
-                                        "Content-Type": "multipart/form-data"
-                                    }
-                                };
-                                document.getElementById(
-                                    "upload-file"
-                                ).value = [];
-                                axios
-                                    .post(
-                                        `api/upload-file?content_id=${id_content}`,
-                                        this.formFile,
-                                        config
-                                    )
-                                    .then(response => {
-                                        this.$swal
-                                            .fire({
-                                                position: "center-center",
-                                                icon: "success",
-                                                title: "สำเร็จ",
-                                                showConfirmButton: false,
-                                                timer: 1000
-                                            })
-                                            .then(() => {
-                                                window.location.href = "/";
-                                            });
-                                    })
-                                    .catch(error => {
-                                        this.errorFile =
-                                            error.response.data.error;
-                                        console.log(error.response);
-                                    });
-                            })
-                            .catch(err => {
-                                console.log(err.response);
-                            });
-                    })
-                    .catch(error => {
-                        this.error = error.response.data.errors;
-                        console.log(error.response);
-                    });
-            }
+                            };
+                            document.getElementById("upload-file").value = [];
+                            axios
+                                .post(
+                                    `api/upload-file?content_id=${id_content}`,
+                                    this.formFile,
+                                    config
+                                )
+                                .then(response => {
+                                    this.$swal
+                                        .fire({
+                                            position: "center-center",
+                                            icon: "success",
+                                            title: "สำเร็จ",
+                                            showConfirmButton: false,
+                                            timer: 1000
+                                        })
+                                        .then(() => {
+                                            window.location.href = "/";
+                                        });
+                                })
+                                .catch(error => {
+                                    this.errorFile = error.response.data.error;
+                                    console.log(error.response);
+                                });
+                        })
+                        .catch(err => {
+                            console.log(err.response);
+                        });
+                })
+                .catch(error => {
+                    this.error = error.response.data.errors;
+                    console.log(error.response);
+                });
         }
     }
 };

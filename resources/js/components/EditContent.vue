@@ -425,77 +425,68 @@ export default {
                 time_show: this.content.time_show,
                 detail: CKEDITOR.instances.detail.getData()
             };
-            if (this.images.length == 0 && this.showImages.length == 0) {
-                this.$swal.fire("ไม่สำเร็จ!", "กรุณาเลือกรูปภาพ", "error");
-            } else {
-                axios
-                    .post(`update-content/${this.id_content}`, data)
-                    .then(res => {
-                        console.log(res.data);
-                        const id_content = res.data.id;
 
-                        for (let i = 0; i < this.images.length; i++) {
-                            this.formImg.append("images[]", this.images[i]);
-                        }
-                        const config = {
-                            headers: { "Content-Type": "multipart/form-data" }
-                        };
-                        document.getElementById("upload-img").value = [];
-                        axios
-                            .post(
-                                `api/upload-image?content_id=${id_content}`,
-                                this.formImg,
-                                config
-                            )
-                            .then(response => {
-                                for (let i = 0; i < this.files.length; i++) {
-                                    this.formFile.append(
-                                        "file[]",
-                                        this.files[i]
-                                    );
+            axios
+                .post(`update-content/${this.id_content}`, data)
+                .then(res => {
+                    console.log(res.data);
+                    const id_content = res.data.id;
+
+                    for (let i = 0; i < this.images.length; i++) {
+                        this.formImg.append("images[]", this.images[i]);
+                    }
+                    const config = {
+                        headers: { "Content-Type": "multipart/form-data" }
+                    };
+                    document.getElementById("upload-img").value = [];
+                    axios
+                        .post(
+                            `api/upload-image?content_id=${id_content}`,
+                            this.formImg,
+                            config
+                        )
+                        .then(response => {
+                            for (let i = 0; i < this.files.length; i++) {
+                                this.formFile.append("file[]", this.files[i]);
+                            }
+                            const config = {
+                                headers: {
+                                    "Content-Type": "multipart/form-data"
                                 }
-                                const config = {
-                                    headers: {
-                                        "Content-Type": "multipart/form-data"
-                                    }
-                                };
-                                document.getElementById(
-                                    "upload-file"
-                                ).value = [];
-                                axios
-                                    .post(
-                                        `api/upload-file?content_id=${id_content}`,
-                                        this.formFile,
-                                        config
-                                    )
-                                    .then(response => {
-                                        this.$swal
-                                            .fire({
-                                                position: "center-center",
-                                                icon: "success",
-                                                title: "สำเร็จ",
-                                                showConfirmButton: false,
-                                                timer: 1000
-                                            })
-                                            .then(() => {
-                                                window.location.href = "/";
-                                            });
-                                    })
-                                    .catch(error => {
-                                        this.errorFile =
-                                            error.response.data.error;
-                                        console.log(error.response);
-                                    });
-                            })
-                            .catch(err => {
-                                console.log(err.response);
-                            });
-                    })
-                    .catch(error => {
-                        this.error = error.response.data.errors;
-                        console.log(error.response);
-                    });
-            }
+                            };
+                            document.getElementById("upload-file").value = [];
+                            axios
+                                .post(
+                                    `api/upload-file?content_id=${id_content}`,
+                                    this.formFile,
+                                    config
+                                )
+                                .then(response => {
+                                    this.$swal
+                                        .fire({
+                                            position: "center-center",
+                                            icon: "success",
+                                            title: "สำเร็จ",
+                                            showConfirmButton: false,
+                                            timer: 1000
+                                        })
+                                        .then(() => {
+                                            window.location.href = "/";
+                                        });
+                                })
+                                .catch(error => {
+                                    this.errorFile = error.response.data.error;
+                                    console.log(error.response);
+                                });
+                        })
+                        .catch(err => {
+                            console.log(err.response);
+                        });
+                })
+                .catch(error => {
+                    this.error = error.response.data.errors;
+                    console.log(error.response);
+                });
         }
     }
 };
