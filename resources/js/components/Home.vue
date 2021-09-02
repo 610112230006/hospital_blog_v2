@@ -221,7 +221,12 @@
     </div>
 </template>
 <script>
+import SlideNew from './SlideNew'
 export default {
+    components: {
+    'slidenew-component': SlideNew,
+
+  },
     data() {
         return {
             newContents: [],

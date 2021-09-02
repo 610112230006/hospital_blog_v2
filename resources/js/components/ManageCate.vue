@@ -34,10 +34,21 @@
                                     class="card-header d-flex justify-content-between"
                                     id="headingOne"
                                 >
-                                    <h5>{{ data.name }} {{data.id}}</h5>
+                                    <h5>{{ data.name }}</h5>
                                     <h4>
                                         <a
-                                            @click="delMainCate(data.id)"
+                                            @click.prevent="
+                                                editCate(data.id, data.name)
+                                            "
+                                            href="javascript:void(0)"
+                                            >แก้ไข</a
+                                        >
+                                        &nbsp&nbsp
+                                        <a
+                                            @click.prevent="
+                                                delMainCate(data.id)
+                                            "
+                                            class="text-danger"
                                             href="javascript:void(0)"
                                             >ลบ</a
                                         >
@@ -49,24 +60,42 @@
                                         <div
                                             v-for="data2 in optionSubCate"
                                             :key="data2.id"
+                                            v-if="data2.category_id == data.id"
                                             class="d-flex justify-content-between"
                                         >
-                                            <p
-                                                v-if="
-                                                    data2.category_id == data.id
-                                                "
-                                            >
-                                                {{ data2.name }}
-                                                {{ data2.id }}
+                                            <p>
+                                                <strong>{{
+                                                    data2.name
+                                                }}</strong>
+                                                &nbsp&nbsp&nbsp{{
+                                                    data2.type === "publish"
+                                                        ? " (ข่าวประชาสัมพันธ์)"
+                                                        : ""
+                                                }}
+                                                {{
+                                                    data2.type === "document"
+                                                        ? " (คลังเอกสาร) "
+                                                        : ""
+                                                }}
                                             </p>
-                                            <a
-                                                v-if="
-                                                    data2.category_id == data.id
-                                                "
-                                                @click="delSubCate(data2.id)"
-                                                href="javascript:void(0)"
-                                                >ลบ</a
-                                            >
+                                            <div>
+                                                <a
+                                                    @click.prevent="
+                                                        editSubCate(data2.id)
+                                                    "
+                                                    href="javascript:void(0)"
+                                                    >แก้ไข</a
+                                                >
+                                                &nbsp&nbsp
+                                                <a
+                                                    @click.prevent="
+                                                        delSubCate(data2.id)
+                                                    "
+                                                    class="text-danger"
+                                                    href="javascript:void(0)"
+                                                    >ลบ</a
+                                                >
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +103,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card">
+                        <div v-if="showcard == 'add'" class="card">
                             <div class="card-body">
                                 <h4 class="card-title">เพิ่มหมวดหมู่</h4>
                                 <div class="card-text mt-2">
@@ -159,6 +188,25 @@
                                             {{ errors }}
                                         </div>
                                     </div>
+                                    <div
+                                        v-if="statusSubcate"
+                                        class="form-group"
+                                    >
+                                        <label for="">ประเภทหมวดหมู่</label>
+                                        <select
+                                            v-model="type"
+                                            class="form-control"
+                                            name=""
+                                            id=""
+                                        >
+                                            <option value="publish"
+                                                >ประชาสัมพันธ์</option
+                                            >
+                                            <option value="document"
+                                                >คลังเอกสาร</option
+                                            >
+                                        </select>
+                                    </div>
                                     <div class="d-flex justify-content-center">
                                         <div v-if="!statusSubcate">
                                             <button
@@ -174,6 +222,125 @@
                                                 class="btn btn-primary"
                                             >
                                                 เพิ่มหมวดหมู่ย่อย
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="showcard == 'editcate'" class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">แก้ไขหมวดหมู่</h4>
+                                <div class="card-text mt-2">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlInput1"
+                                            >ชื่อหมวดหมู่หลัก</label
+                                        >
+                                        <input
+                                            v-model="nameMainCate"
+                                            type="text"
+                                            class="form-control"
+                                            id="exampleFormControlInput1"
+                                        />
+                                        <div
+                                            v-if="this.res_errors.name"
+                                            id="username-error"
+                                            class="is-invalid"
+                                        >
+                                            {{ res_errors.name[0] }}
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center">
+                                        <div>
+                                            <button
+                                                @click.prevent="updateCate"
+                                                class="btn btn-primary"
+                                            >
+                                                แก้ไขหมวดหมู่หลัก
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="showcard == 'editsubcate'" class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">แก้ไขหมวดหมู่</h4>
+                                <div class="card-text mt-2">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlInput1"
+                                            >ต้องการเพิ่มในหมวดหมู่ใด</label
+                                        >
+                                        <select
+                                            class="form-select"
+                                            id="exampleFormControlSelect1"
+                                            v-model="selectMainCate"
+                                        >
+                                            <option
+                                                v-for="data in optionMainCate"
+                                                :key="data.id"
+                                                v-bind:value="data.id"
+                                                >{{ data.name }}</option
+                                            >
+                                        </select>
+                                        <div
+                                            v-if="this.res_errors.category_id"
+                                            id="username-error"
+                                            class="is-invalid"
+                                        >
+                                            {{ res_errors.category_id[0] }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlInput1"
+                                            >ชื่อหมวดหมู่ย่อย</label
+                                        >
+                                        <input
+                                            v-model="nameSubCate"
+                                            type="text"
+                                            class="form-control"
+                                            id="exampleFormControlInput1"
+                                        />
+                                        <div
+                                            v-if="this.res_errors.name"
+                                            id="username-error"
+                                            class="is-invalid"
+                                        >
+                                            {{ res_errors.name[0] }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">ประเภทหมวดหมู่</label>
+                                        <select
+                                            v-model="type"
+                                            class="form-control"
+                                            name=""
+                                            id=""
+                                        >
+                                            <option value="publish"
+                                                >ประชาสัมพันธ์</option
+                                            >
+                                            <option value="document"
+                                                >คลังเอกสาร</option
+                                            >
+                                        </select>
+                                        <div
+                                            v-if="this.res_errors.type"
+                                            id="username-error"
+                                            class="is-invalid"
+                                        >
+                                            {{ res_errors.type[0] }}
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center">
+                                        <div>
+                                            <button
+                                                @click.prevent="updateSubCate"
+                                                class="btn btn-primary"
+                                            >
+                                                แก้ไขหมวดหมู่ย่อย
                                             </button>
                                         </div>
                                     </div>
@@ -197,10 +364,14 @@ export default {
             selectMainCate: "",
             nameMainCate: "",
             nameSubCate: "",
+            type: "publish",
             statusSubcate: false,
             errorsSelect: [],
             errors: [],
-            errorsCate: []
+            res_errors: [],
+            errorsCate: [],
+            editId: "",
+            showcard: "add"
         };
     },
     mounted() {
@@ -208,6 +379,78 @@ export default {
         this.fetchSubCategory();
     },
     methods: {
+        updateCate() {
+            let data = {
+                name: this.nameMainCate
+            };
+            axios
+                .put(`api/category/${this.editId}`, data)
+                .then(res => {
+                    this.$swal
+                        .fire({
+                            position: "center-center",
+                            icon: "success",
+                            title: "สำเร็จ",
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                        .then(() => {
+                            this.reForm();
+                        });
+                })
+                .catch(err => {
+                    this.res_errors = err.response.data.errors;
+                    console.log(err.response.data.errors);
+                });
+        },
+        updateSubCate() {
+            let data = {
+                name: this.nameSubCate,
+                category_id: this.selectMainCate,
+                type: this.type
+            };
+            axios
+                .put(`api/sub-category/${this.editId}`, data)
+                .then(res => {
+                    this.$swal
+                        .fire({
+                            position: "center-center",
+                            icon: "success",
+                            title: "สำเร็จ",
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                        .then(() => {
+                            this.reForm();
+                        });
+                })
+                .catch(err => {
+                    this.res_errors = err.response.data.errors;
+                    console.log(err.response.data.errors);
+                });
+        },
+        editCate(id_cate, name) {
+            window.scrollTo(0, 300); 
+            this.nameMainCate = name;
+            this.editId = id_cate;
+            this.showcard = "editcate";
+        },
+        editSubCate(id_subcate) {
+            window.scrollTo(0, 300); 
+            axios
+                .get(`api/get-one-subcate/${id_subcate}`)
+                .then(res => {
+                    this.nameSubCate = res.data.name;
+                    this.selectMainCate = res.data.category_id;
+                    this.editId = res.data.id;
+                    this.type = res.data.type;
+                    this.showcard = "editsubcate";
+                })
+                .catch(err => {
+                    console.log(err.response.data);
+                });
+        },
+
         delMainCate(cate_id) {
             this.$swal
                 .fire({
@@ -223,7 +466,6 @@ export default {
                         axios
                             .delete(`api/category/${cate_id}`)
                             .then(res => {
-                                console.log(res.data);
                                 this.$swal.fire("ลบสำเร็จ!", "", "success");
                                 this.reForm();
                             })
@@ -276,30 +518,29 @@ export default {
                 });
         },
         reForm() {
-            this.selectCate = "main",
-            this.optionMainCate = [],
-            this.optionSubCate = [],
-            this.selectMainCate = "",                        
-            this.statusSubcate = false,
-            this.nameMainCate = "";
+            (this.selectCate = "main"),
+                (this.optionMainCate = []),
+                (this.optionSubCate = []),
+                (this.selectMainCate = ""),
+                (this.statusSubcate = false),
+                (this.nameMainCate = "");
             this.nameSubCate = "";
+            this.type = "publish";
             this.errorsSelect = [];
             this.errors = [];
             this.errorsCate = [];
+            this.showcard = "add";
             this.fetchCategory();
             this.fetchSubCategory();
         },
         fetchCategory() {
             axios.get("api/category").then(res => {
-                console.log(res.data);
                 this.optionMainCate = res.data;
             });
         },
         fetchSubCategory() {
             axios.get("api/sub-category").then(res => {
-                console.log(res.data);
                 this.optionSubCate = res.data;
-                console.log(this.optionSubCate);
             });
         },
         setSelectCate() {
@@ -341,7 +582,8 @@ export default {
             } else {
                 let data = {
                     nameSubCate: this.nameSubCate,
-                    category_id: this.selectMainCate
+                    category_id: this.selectMainCate,
+                    type: this.type
                 };
                 axios.post("api/sub-category", data).then(res => {
                     if (res.data == "ok") {

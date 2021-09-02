@@ -40,6 +40,7 @@ class SubCategoryController extends Controller
         SubCategory::create([
             'name'=> $request->nameSubCate,            
             'category_id'=> $request->category_id,            
+            'type'=> $request->type,            
         ]);
         return response()->json('ok');
     }
@@ -75,7 +76,24 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate(
+            [
+                'name' => 'required',
+                'category_id' => 'required',
+                'type' => 'required',
+            ],
+            [
+                'name.required' => 'กรุณากรอกชื่อหมวดหมู่',
+                'category_id.required' => 'กรุณาเลือกหมวดหมู่หลัก',
+                'type.required' => 'กรุณาเลือกประเภทหมวดหมู่',
+            ]
+        );
+        $data = SubCategory::find($id)->update([
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+            'type' => $request->type,
+        ]);
+        return response()->json($data);
     }
 
     /**

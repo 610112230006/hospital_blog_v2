@@ -74,7 +74,20 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate(
+            [
+                'name' => 'required',
+                
+            ],
+            [
+                'name.required' => 'กรุณากรอกชื่อหมวดหมู่',               
+            ]
+        );
+
+        $data = Category::find($id)->update([
+            'name' => $request->name
+        ]);
+        return response()->json($data);
     }
 
     /**

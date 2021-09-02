@@ -30,7 +30,7 @@ Vue.component('usereditpersonal-component', require('./components/UserEditPerson
 Vue.component('contentbycate-component', require('./components/ContentByCate.vue').default);
 Vue.component('contentbysubcate-component', require('./components/ContentBySubcate.vue').default);
 Vue.component('menu-component', require('./components/Menu.vue').default);
-Vue.component('slidenew-component', require('./components/SlideNew.vue').default);
+
 
 
 const app = new Vue({

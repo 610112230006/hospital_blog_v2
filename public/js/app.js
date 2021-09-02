@@ -3859,6 +3859,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SlideNew__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SlideNew */ "./resources/js/components/SlideNew.vue");
 //
 //
 //
@@ -4081,7 +4082,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    'slidenew-component': _SlideNew__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       newContents: [],
@@ -4309,6 +4314,173 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4318,10 +4490,14 @@ __webpack_require__.r(__webpack_exports__);
       selectMainCate: "",
       nameMainCate: "",
       nameSubCate: "",
+      type: "publish",
       statusSubcate: false,
       errorsSelect: [],
       errors: [],
-      errorsCate: []
+      res_errors: [],
+      errorsCate: [],
+      editId: "",
+      showcard: "add"
     };
   },
   mounted: function mounted() {
@@ -4329,8 +4505,72 @@ __webpack_require__.r(__webpack_exports__);
     this.fetchSubCategory();
   },
   methods: {
-    delMainCate: function delMainCate(cate_id) {
+    updateCate: function updateCate() {
       var _this = this;
+
+      var data = {
+        name: this.nameMainCate
+      };
+      axios.put("api/category/".concat(this.editId), data).then(function (res) {
+        _this.$swal.fire({
+          position: "center-center",
+          icon: "success",
+          title: "สำเร็จ",
+          showConfirmButton: false,
+          timer: 1000
+        }).then(function () {
+          _this.reForm();
+        });
+      })["catch"](function (err) {
+        _this.res_errors = err.response.data.errors;
+        console.log(err.response.data.errors);
+      });
+    },
+    updateSubCate: function updateSubCate() {
+      var _this2 = this;
+
+      var data = {
+        name: this.nameSubCate,
+        category_id: this.selectMainCate,
+        type: this.type
+      };
+      axios.put("api/sub-category/".concat(this.editId), data).then(function (res) {
+        _this2.$swal.fire({
+          position: "center-center",
+          icon: "success",
+          title: "สำเร็จ",
+          showConfirmButton: false,
+          timer: 1000
+        }).then(function () {
+          _this2.reForm();
+        });
+      })["catch"](function (err) {
+        _this2.res_errors = err.response.data.errors;
+        console.log(err.response.data.errors);
+      });
+    },
+    editCate: function editCate(id_cate, name) {
+      window.scrollTo(0, 300);
+      this.nameMainCate = name;
+      this.editId = id_cate;
+      this.showcard = "editcate";
+    },
+    editSubCate: function editSubCate(id_subcate) {
+      var _this3 = this;
+
+      window.scrollTo(0, 300);
+      axios.get("api/get-one-subcate/".concat(id_subcate)).then(function (res) {
+        _this3.nameSubCate = res.data.name;
+        _this3.selectMainCate = res.data.category_id;
+        _this3.editId = res.data.id;
+        _this3.type = res.data.type;
+        _this3.showcard = "editsubcate";
+      })["catch"](function (err) {
+        console.log(err.response.data);
+      });
+    },
+    delMainCate: function delMainCate(cate_id) {
+      var _this4 = this;
 
       this.$swal.fire({
         title: "คุณต้องการลบหมวดหมู่หลักจริง ๆ หรือไม่ ?",
@@ -4342,18 +4582,16 @@ __webpack_require__.r(__webpack_exports__);
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           axios["delete"]("api/category/".concat(cate_id)).then(function (res) {
-            console.log(res.data);
+            _this4.$swal.fire("ลบสำเร็จ!", "", "success");
 
-            _this.$swal.fire("ลบสำเร็จ!", "", "success");
-
-            _this.reForm();
+            _this4.reForm();
           })["catch"](function (err) {
             console.log(err);
 
-            _this.$swal.fire("ลบไม่สำเร็จ!", "", "error");
+            _this4.$swal.fire("ลบไม่สำเร็จ!", "", "error");
           });
         } else {
-          _this.$swal.fire({
+          _this4.$swal.fire({
             position: "center-center",
             icon: "info",
             title: "ยกเลิก",
@@ -4364,7 +4602,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     delSubCate: function delSubCate(subcate_id) {
-      var _this2 = this;
+      var _this5 = this;
 
       this.$swal.fire({
         title: "คุณต้องการลบหมวดหมู่ย่อยจริง ๆ หรือไม่ ?",
@@ -4376,16 +4614,16 @@ __webpack_require__.r(__webpack_exports__);
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           axios["delete"]("api/sub-category/".concat(subcate_id)).then(function (res) {
-            _this2.$swal.fire("ลบสำเร็จ!", "", "success");
+            _this5.$swal.fire("ลบสำเร็จ!", "", "success");
 
-            _this2.reForm();
+            _this5.reForm();
           })["catch"](function (err) {
             console.log(err);
 
-            _this2.$swal.fire("ลบไม่สำเร็จ!", "", "error");
+            _this5.$swal.fire("ลบไม่สำเร็จ!", "", "error");
           });
         } else {
-          _this2.$swal.fire({
+          _this5.$swal.fire({
             position: "center-center",
             icon: "info",
             title: "ยกเลิก",
@@ -4398,27 +4636,26 @@ __webpack_require__.r(__webpack_exports__);
     reForm: function reForm() {
       this.selectCate = "main", this.optionMainCate = [], this.optionSubCate = [], this.selectMainCate = "", this.statusSubcate = false, this.nameMainCate = "";
       this.nameSubCate = "";
+      this.type = "publish";
       this.errorsSelect = [];
       this.errors = [];
       this.errorsCate = [];
+      this.showcard = "add";
       this.fetchCategory();
       this.fetchSubCategory();
     },
     fetchCategory: function fetchCategory() {
-      var _this3 = this;
+      var _this6 = this;
 
       axios.get("api/category").then(function (res) {
-        console.log(res.data);
-        _this3.optionMainCate = res.data;
+        _this6.optionMainCate = res.data;
       });
     },
     fetchSubCategory: function fetchSubCategory() {
-      var _this4 = this;
+      var _this7 = this;
 
       axios.get("api/sub-category").then(function (res) {
-        console.log(res.data);
-        _this4.optionSubCate = res.data;
-        console.log(_this4.optionSubCate);
+        _this7.optionSubCate = res.data;
       });
     },
     setSelectCate: function setSelectCate() {
@@ -4429,7 +4666,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     addMainCate: function addMainCate() {
-      var _this5 = this;
+      var _this8 = this;
 
       if (!this.nameMainCate) {
         this.errorsCate.push("กรุณากรอกข้อมูล");
@@ -4439,17 +4676,17 @@ __webpack_require__.r(__webpack_exports__);
         };
         axios.post("api/category", data).then(function (res) {
           if (res.data == "ok") {
-            _this5.$swal.fire("สำเร็จ!", "คุณได้เพิ่มหมวดหมู่หลักสำเร็จ!", "success");
+            _this8.$swal.fire("สำเร็จ!", "คุณได้เพิ่มหมวดหมู่หลักสำเร็จ!", "success");
 
-            _this5.reForm();
+            _this8.reForm();
           } else {
-            _this5.$swal.fire("ไม่สำเร็จ!", "เพิ่มหมวดหมู่หลักไม่สำเร็จ!", "error");
+            _this8.$swal.fire("ไม่สำเร็จ!", "เพิ่มหมวดหมู่หลักไม่สำเร็จ!", "error");
           }
         });
       }
     },
     addSubCate: function addSubCate() {
-      var _this6 = this;
+      var _this9 = this;
 
       if (!this.nameSubCate) {
         this.errors.push("กรุณากรอกหมวดหมู่ย่อย.");
@@ -4460,15 +4697,16 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         var data = {
           nameSubCate: this.nameSubCate,
-          category_id: this.selectMainCate
+          category_id: this.selectMainCate,
+          type: this.type
         };
         axios.post("api/sub-category", data).then(function (res) {
           if (res.data == "ok") {
-            _this6.$swal.fire("สำเร็จ!", "คุณได้เพิ่มหมวดหมู่หลักสำเร็จ!", "success");
+            _this9.$swal.fire("สำเร็จ!", "คุณได้เพิ่มหมวดหมู่หลักสำเร็จ!", "success");
 
-            _this6.reForm();
+            _this9.reForm();
           } else {
-            _this6.$swal.fire("ไม่สำเร็จ!", "เพิ่มหมวดหมู่หลักไม่สำเร็จ!", "error");
+            _this9.$swal.fire("ไม่สำเร็จ!", "เพิ่มหมวดหมู่หลักไม่สำเร็จ!", "error");
           }
         });
       }
@@ -44308,9 +44546,7 @@ var render = function() {
                       attrs: { id: "headingOne" }
                     },
                     [
-                      _c("h5", [
-                        _vm._v(_vm._s(data.name) + " " + _vm._s(data.id))
-                      ]),
+                      _c("h5", [_vm._v(_vm._s(data.name))]),
                       _vm._v(" "),
                       _c("h4", [
                         _c(
@@ -44319,6 +44555,24 @@ var render = function() {
                             attrs: { href: "javascript:void(0)" },
                             on: {
                               click: function($event) {
+                                $event.preventDefault()
+                                return _vm.editCate(data.id, data.name)
+                              }
+                            }
+                          },
+                          [_vm._v("แก้ไข")]
+                        ),
+                        _vm._v(
+                          "\n                                      \n                                    "
+                        ),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "text-danger",
+                            attrs: { href: "javascript:void(0)" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
                                 return _vm.delMainCate(data.id)
                               }
                             }
@@ -44334,41 +44588,68 @@ var render = function() {
                       "div",
                       { staticClass: "card-body" },
                       _vm._l(_vm.optionSubCate, function(data2) {
-                        return _c(
-                          "div",
-                          {
-                            key: data2.id,
-                            staticClass: "d-flex justify-content-between"
-                          },
-                          [
-                            data2.category_id == data.id
-                              ? _c("p", [
+                        return data2.category_id == data.id
+                          ? _c(
+                              "div",
+                              {
+                                key: data2.id,
+                                staticClass: "d-flex justify-content-between"
+                              },
+                              [
+                                _c("p", [
+                                  _c("strong", [_vm._v(_vm._s(data2.name))]),
                                   _vm._v(
-                                    "\n                                            " +
-                                      _vm._s(data2.name) +
+                                    "\n                                               " +
+                                      _vm._s(
+                                        data2.type === "publish"
+                                          ? " (ข่าวประชาสัมพันธ์)"
+                                          : ""
+                                      ) +
                                       "\n                                            " +
-                                      _vm._s(data2.id) +
+                                      _vm._s(
+                                        data2.type === "document"
+                                          ? " (คลังเอกสาร) "
+                                          : ""
+                                      ) +
                                       "\n                                        "
                                   )
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            data2.category_id == data.id
-                              ? _c(
-                                  "a",
-                                  {
-                                    attrs: { href: "javascript:void(0)" },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.delSubCate(data2.id)
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: { href: "javascript:void(0)" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.editSubCate(data2.id)
+                                        }
                                       }
-                                    }
-                                  },
-                                  [_vm._v("ลบ")]
-                                )
-                              : _vm._e()
-                          ]
-                        )
+                                    },
+                                    [_vm._v("แก้ไข")]
+                                  ),
+                                  _vm._v(
+                                    "\n                                              \n                                            "
+                                  ),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "text-danger",
+                                      attrs: { href: "javascript:void(0)" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.delSubCate(data2.id)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("ลบ")]
+                                  )
+                                ])
+                              ]
+                            )
+                          : _vm._e()
                       }),
                       0
                     )
@@ -44380,60 +44661,416 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-4" }, [
-            _c("div", { staticClass: "card" }, [
-              _c("div", { staticClass: "card-body" }, [
-                _c("h4", { staticClass: "card-title" }, [
-                  _vm._v("เพิ่มหมวดหมู่")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-text mt-2" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
+            _vm.showcard == "add"
+              ? _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("h4", { staticClass: "card-title" }, [
+                      _vm._v("เพิ่มหมวดหมู่")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-text mt-2" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "select",
                           {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.selectCate,
-                            expression: "selectCate"
-                          }
-                        ],
-                        staticClass: "form-select",
-                        attrs: { id: "exampleFormControlSelect1" },
-                        on: {
-                          change: [
-                            function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.selectCate = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            },
-                            _vm.setSelectCate
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.selectCate,
+                                expression: "selectCate"
+                              }
+                            ],
+                            staticClass: "form-select",
+                            attrs: { id: "exampleFormControlSelect1" },
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.selectCate = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                },
+                                _vm.setSelectCate
+                              ]
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "main" } }, [
+                              _vm._v("หมวดหมู่หลัก")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "sub" } }, [
+                              _vm._v("หมวดหมู่ย่อย")
+                            ])
                           ]
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { value: "main" } }, [
-                          _vm._v("หมวดหมู่หลัก")
-                        ]),
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _vm.statusSubcate
+                        ? _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              { attrs: { for: "exampleFormControlInput1" } },
+                              [_vm._v("ต้องการเพิ่มในหมวดหมู่ใด")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.selectMainCate,
+                                    expression: "selectMainCate"
+                                  }
+                                ],
+                                staticClass: "form-select",
+                                attrs: { id: "exampleFormControlSelect1" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.selectMainCate = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  }
+                                }
+                              },
+                              _vm._l(_vm.optionMainCate, function(data) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: data.id,
+                                    domProps: { value: data.id }
+                                  },
+                                  [_vm._v(_vm._s(data.name))]
+                                )
+                              }),
+                              0
+                            ),
+                            _vm._v(" "),
+                            _vm.errorsSelect.length
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass: "is-invalid",
+                                    attrs: { id: "username-error" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        " +
+                                        _vm._s(_vm.errorsSelect) +
+                                        "\n                                    "
+                                    )
+                                  ]
+                                )
+                              : _vm._e()
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.statusSubcate
+                        ? _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              { attrs: { for: "exampleFormControlInput1" } },
+                              [_vm._v("ชื่อหมวดหมู่หลัก")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.nameMainCate,
+                                  expression: "nameMainCate"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                id: "exampleFormControlInput1"
+                              },
+                              domProps: { value: _vm.nameMainCate },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.nameMainCate = $event.target.value
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.errorsCate.length
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass: "is-invalid",
+                                    attrs: { id: "username-error" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        " +
+                                        _vm._s(_vm.errorsCate) +
+                                        "\n                                    "
+                                    )
+                                  ]
+                                )
+                              : _vm._e()
+                          ])
+                        : _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              { attrs: { for: "exampleFormControlInput1" } },
+                              [_vm._v("ชื่อหมวดหมู่ย่อย")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.nameSubCate,
+                                  expression: "nameSubCate"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                id: "exampleFormControlInput1"
+                              },
+                              domProps: { value: _vm.nameSubCate },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.nameSubCate = $event.target.value
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.length
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass: "is-invalid",
+                                    attrs: { id: "username-error" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        " +
+                                        _vm._s(_vm.errors) +
+                                        "\n                                    "
+                                    )
+                                  ]
+                                )
+                              : _vm._e()
+                          ]),
+                      _vm._v(" "),
+                      _vm.statusSubcate
+                        ? _c("div", { staticClass: "form-group" }, [
+                            _c("label", { attrs: { for: "" } }, [
+                              _vm._v("ประเภทหมวดหมู่")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.type,
+                                    expression: "type"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "", id: "" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.type = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "publish" } }, [
+                                  _vm._v("ประชาสัมพันธ์")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "document" } }, [
+                                  _vm._v("คลังเอกสาร")
+                                ])
+                              ]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex justify-content-center" },
+                        [
+                          !_vm.statusSubcate
+                            ? _c("div", [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-primary",
+                                    on: { click: _vm.addMainCate }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                            เพิ่มหมวดหมู่หลัก\n                                        "
+                                    )
+                                  ]
+                                )
+                              ])
+                            : _c("div", [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-primary",
+                                    on: { click: _vm.addSubCate }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                            เพิ่มหมวดหมู่ย่อย\n                                        "
+                                    )
+                                  ]
+                                )
+                              ])
+                        ]
+                      )
+                    ])
+                  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.showcard == "editcate"
+              ? _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("h4", { staticClass: "card-title" }, [
+                      _vm._v("แก้ไขหมวดหมู่")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-text mt-2" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          { attrs: { for: "exampleFormControlInput1" } },
+                          [_vm._v("ชื่อหมวดหมู่หลัก")]
+                        ),
                         _vm._v(" "),
-                        _c("option", { attrs: { value: "sub" } }, [
-                          _vm._v("หมวดหมู่ย่อย")
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _vm.statusSubcate
-                    ? _c("div", { staticClass: "form-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.nameMainCate,
+                              expression: "nameMainCate"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            id: "exampleFormControlInput1"
+                          },
+                          domProps: { value: _vm.nameMainCate },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.nameMainCate = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        this.res_errors.name
+                          ? _c(
+                              "div",
+                              {
+                                staticClass: "is-invalid",
+                                attrs: { id: "username-error" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(_vm.res_errors.name[0]) +
+                                    "\n                                    "
+                                )
+                              ]
+                            )
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex justify-content-center" },
+                        [
+                          _c("div", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.updateCate.apply(null, arguments)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                            แก้ไขหมวดหมู่หลัก\n                                        "
+                                )
+                              ]
+                            )
+                          ])
+                        ]
+                      )
+                    ])
+                  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.showcard == "editsubcate"
+              ? _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("h4", { staticClass: "card-title" }, [
+                      _vm._v("แก้ไขหมวดหมู่")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-text mt-2" }, [
+                      _c("div", { staticClass: "form-group" }, [
                         _c(
                           "label",
                           { attrs: { for: "exampleFormControlInput1" } },
@@ -44479,7 +45116,7 @@ var render = function() {
                           0
                         ),
                         _vm._v(" "),
-                        _vm.errorsSelect.length
+                        this.res_errors.category_id
                           ? _c(
                               "div",
                               {
@@ -44489,66 +45126,15 @@ var render = function() {
                               [
                                 _vm._v(
                                   "\n                                        " +
-                                    _vm._s(_vm.errorsSelect) +
+                                    _vm._s(_vm.res_errors.category_id[0]) +
                                     "\n                                    "
                                 )
                               ]
                             )
                           : _vm._e()
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !_vm.statusSubcate
-                    ? _c("div", { staticClass: "form-group" }, [
-                        _c(
-                          "label",
-                          { attrs: { for: "exampleFormControlInput1" } },
-                          [_vm._v("ชื่อหมวดหมู่หลัก")]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.nameMainCate,
-                              expression: "nameMainCate"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            id: "exampleFormControlInput1"
-                          },
-                          domProps: { value: _vm.nameMainCate },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.nameMainCate = $event.target.value
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _vm.errorsCate.length
-                          ? _c(
-                              "div",
-                              {
-                                staticClass: "is-invalid",
-                                attrs: { id: "username-error" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                        " +
-                                    _vm._s(_vm.errorsCate) +
-                                    "\n                                    "
-                                )
-                              ]
-                            )
-                          : _vm._e()
-                      ])
-                    : _c("div", { staticClass: "form-group" }, [
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
                         _c(
                           "label",
                           { attrs: { for: "exampleFormControlInput1" } },
@@ -44580,7 +45166,7 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
-                        _vm.errors.length
+                        this.res_errors.name
                           ? _c(
                               "div",
                               {
@@ -44590,48 +45176,109 @@ var render = function() {
                               [
                                 _vm._v(
                                   "\n                                        " +
-                                    _vm._s(_vm.errors) +
+                                    _vm._s(_vm.res_errors.name[0]) +
                                     "\n                                    "
                                 )
                               ]
                             )
                           : _vm._e()
                       ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "d-flex justify-content-center" }, [
-                    !_vm.statusSubcate
-                      ? _c("div", [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary",
-                              on: { click: _vm.addMainCate }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                            เพิ่มหมวดหมู่หลัก\n                                        "
-                              )
-                            ]
-                          )
-                        ])
-                      : _c("div", [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary",
-                              on: { click: _vm.addSubCate }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                            เพิ่มหมวดหมู่ย่อย\n                                        "
-                              )
-                            ]
-                          )
-                        ])
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "" } }, [
+                          _vm._v("ประเภทหมวดหมู่")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.type,
+                                expression: "type"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { name: "", id: "" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.type = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "publish" } }, [
+                              _vm._v("ประชาสัมพันธ์")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "document" } }, [
+                              _vm._v("คลังเอกสาร")
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        this.res_errors.type
+                          ? _c(
+                              "div",
+                              {
+                                staticClass: "is-invalid",
+                                attrs: { id: "username-error" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(_vm.res_errors.type[0]) +
+                                    "\n                                    "
+                                )
+                              ]
+                            )
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex justify-content-center" },
+                        [
+                          _c("div", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.updateSubCate.apply(
+                                      null,
+                                      arguments
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                            แก้ไขหมวดหมู่ย่อย\n                                        "
+                                )
+                              ]
+                            )
+                          ])
+                        ]
+                      )
+                    ])
                   ])
                 ])
-              ])
-            ])
+              : _vm._e()
           ])
         ])
       ])
@@ -58562,7 +59209,6 @@ Vue.component('usereditpersonal-component', __webpack_require__(/*! ./components
 Vue.component('contentbycate-component', __webpack_require__(/*! ./components/ContentByCate.vue */ "./resources/js/components/ContentByCate.vue")["default"]);
 Vue.component('contentbysubcate-component', __webpack_require__(/*! ./components/ContentBySubcate.vue */ "./resources/js/components/ContentBySubcate.vue")["default"]);
 Vue.component('menu-component', __webpack_require__(/*! ./components/Menu.vue */ "./resources/js/components/Menu.vue")["default"]);
-Vue.component('slidenew-component', __webpack_require__(/*! ./components/SlideNew.vue */ "./resources/js/components/SlideNew.vue")["default"]);
 var app = new Vue({
   el: '#app'
 });
