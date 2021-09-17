@@ -145,7 +145,7 @@
                                                 เพิ่มไฟล์
                                             </p>
                                             <p class="text-danger">
-                                                *ขนาดของไฟล์ใหม่: 20เมกะไบต์
+                                                *ขนาดของไฟล์ใหม่: 50เมกะไบต์
                                             </p>
                                         </div>
                                     </label>
@@ -214,11 +214,37 @@
                                     <div class="col-10">
                                         <input
                                             class="form-control"
-                                            type="date"
-                                            v-model="content.time_show"
-                                            value=""
-                                            id="example-date-input"
+                                            type="datetime-local"
+                                            v-model="content.time_show"                                            
+                                            id="example-datetime-local-input"
                                         />
+                                        <div
+                                            v-if="error.time_show"
+                                            class="is-invalid"
+                                        >
+                                            {{ error.time_show[0] }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                        for="example-date-input"
+                                        class="col-2 col-form-label"
+                                        >ถึง</label
+                                    >
+                                    <div class="col-10">
+                                        <input
+                                            class="form-control"
+                                            type="datetime-local"
+                                            v-model="content.hide_show"                                            
+                                            id="example-datetime-local-input"
+                                        />
+                                        <div
+                                            v-if="error.hide_show"
+                                            class="is-invalid"
+                                        >
+                                            {{ error.hide_show[0] }}
+                                        </div>
                                     </div>
                                 </div>
 
@@ -355,7 +381,8 @@ export default {
                     title: data.title,
                     type: data.type,
                     detail: CKEDITOR.instances.detail.setData(data.detail),
-                    time_show: data.time_show
+                    time_show: data.time_show,
+                    hide_show: data.hide_show
                 };
                 console.log(res.data);
             });
@@ -423,6 +450,7 @@ export default {
                 title: this.content.title,
                 type: this.content.type,
                 time_show: this.content.time_show,
+                hide_show: this.content.hide_show,
                 detail: CKEDITOR.instances.detail.getData()
             };
 
@@ -471,7 +499,7 @@ export default {
                                             timer: 1000
                                         })
                                         .then(() => {
-                                            window.location.href = "/";
+                                            window.location.href = `detail-content?id_content=${id_content}`;
                                         });
                                 })
                                 .catch(error => {

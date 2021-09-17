@@ -23,36 +23,22 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// Route::resource('user', UserController::class);
+
 Route::resource('user', 'Api\UserController');
 
-// Route::resource('category', CategoryController::class);
 Route::resource('category', 'Api\CategoryController');
 
-// Route::resource('sub-category', SubCategoryController::class);
 Route::resource('sub-category', 'Api\SubCategoryController');
 
-// Route::post('upload-image', [FileController::class,'uploadImg']);
 Route::post('upload-image', 'Api\FileController@uploadImg');
-
-// Route::post('upload-file', [FileController::class,'uploadFile']);
 Route::post('upload-file', 'Api\FileController@uploadFile');
-
-
+Route::post('upload-popup', 'Api\FileController@uploadPopup');
+Route::post('upload-slide', 'Api\FileController@uploadSlide');
 // Show
-// Route::get('cont-new-home',[ShowController::class,'ShowNew']);
-// Route::get('get-all-image',[ShowController::class,'ShowImgNew']);
-// Route::get('subcate-by-cate/{id}',[ShowController::class,'ShowSubCateByCate']);
-// Route::get('content-all-by-create',[ShowController::class,'ShowContentAllByCreate']);
-// Route::get('content-by-user/{user_id}',[ShowController::class,'ShowContentByUser']);
-// Route::get('get-image-by-user/{user_id}',[ShowController::class,'ShowImageByUser']);
-// Route::get('get-content-by-id/{id_content}',[ShowController::class,'ShowContentById']);
-// Route::get('get-image-by-idContent/{id_content}',[ShowController::class,'ShowImageByIdContent']);
-// Route::post('check-permiss-detail-content',[ShowController::class,'CheckPermissDetailContent']);
-// Route::get('del-one-image/{id_file}',[ShowController::class,'DelOneImage']);
-// Route::get('del-one-file/{id_file}',[ShowController::class,'DelOneFile']);
+
 
 Route::get('cont-new-home', 'Api\ShowController@ShowNew');
+Route::get('get-job-home', 'Api\ShowController@ShowJob');
 Route::get('get-all-image', 'Api\ShowController@ShowImgNew');
 Route::get('subcate-by-cate/{id}', 'Api\ShowController@ShowSubCateByCate');
 Route::get('subcate-by-cate-orderby/{id_cate}', 'Api\ShowController@ShowContentByCate');
@@ -63,8 +49,10 @@ Route::get('content-by-user/{user_id}', 'Api\ShowController@ShowContentByUser');
 Route::get('get-image-by-user/{user_id}', 'Api\ShowController@ShowImageByUser');
 Route::get('get-content-by-id/{id_content}', 'Api\ShowController@ShowContentById');
 Route::get('get-image-by-idContent/{id_content}', 'Api\ShowController@ShowImageByIdContent');
+Route::get('get-image-all', 'Api\ShowController@ShowImageAll');
 Route::get('get-image-by-cate/{id_cate}', 'Api\ShowController@ShowImageByIdCate');
 Route::get('get-image-by-subcate/{id_subcate}', 'Api\ShowController@ShowImageByIdSubCate');
+Route::get('get-img-job-home', 'Api\ShowController@ShowImageJob');
 Route::get('check-permiss-detail-content', 'Api\ShowController@CheckPermissDetailContent');
 Route::get('push-statistic/{id_content}', 'Api\ShowController@PushStatis');
 Route::get('get-statistic-all', 'Api\ShowController@ShowStatisAll');
@@ -73,4 +61,16 @@ Route::get('del-one-image/{id_file}', 'Api\ShowController@DelOneImage');
 Route::get('del-one-file/{id_file}', 'Api\ShowController@DelOneFile');
 Route::get('get-one-cate/{id_cate}', 'Api\ShowController@ShowOneCate');
 Route::get('get-one-subcate/{id_subcate}', 'Api\ShowController@ShowOneSubCate');
-Route::get('get-document-all', 'Api\ShowController@ShowDocumentAll');
+Route::get('get-sub-cate-doc', 'Api\ShowController@ShowDocumentAll');
+Route::get('get-content-doc/{id_subcontent}', 'Api\ShowController@ShowContentDoc');
+Route::get('get-file-by-subcate/{id_subcate}', 'Api\ShowController@ShowFileBySubcate');
+Route::get('get-add-sum-read', 'Api\ShowController@ShowAddSumRead');
+Route::get('get-read-to-day', 'Api\ShowController@ShowReadToDay');
+Route::get('get-read-to-mount', 'Api\ShowController@ShowReadToMount');
+Route::get('get-read-to-all', 'Api\ShowController@ShowReadToAll');
+Route::post('search-content', 'Api\ShowController@SearchContent');
+Route::post('search-content-by-admin', 'Api\ShowController@SearchContentByAdmin');
+Route::post('search-content-by-user', 'Api\ShowController@SearchContentByUser');
+
+Route::get('get-img-popup', 'Api\ShowController@ShowImgPopup');
+Route::get('get-img-slide', 'Api\ShowController@ShowImgSlide');

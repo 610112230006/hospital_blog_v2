@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Content extends Model
 {
     protected $fillable = [
-        'title', 'type','detail','user_id','time_show'
+        'title', 'type','detail','user_id','time_show','hide_show'
     ];
 }

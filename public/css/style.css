@@ -10,7 +10,7 @@ Author: INSPIRO - Ardian Berisha
 Copyright 2021
 
 */
-@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,400,500,600,700,800|Nunito:300,400,600,700,800");
+/* @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,400,500,600,700,800|Nunito:300,400,600,700,800"); */
 section { padding: 6rem 0; position: relative; width: 100%; z-index: 1; background-color: #fff; }
 
 section .page-content { padding: 0; }
@@ -41,10 +41,15 @@ section .page-content { padding: 0; }
     BODY
 -----------------------------------------------------------------*/
 html { overflow-x: hidden; }
-
+body{
+  font-family: 'Prompt', sans-serif;
+}
 body .body-inner { padding: 0; margin: 0; }
 
 body .container-wide { width: 100%; margin: 0 auto; padding: 0 60px; }
+
+
+
 
 @media (max-width: 991.98px) { body .body-inner { width: 100%; margin: 0; }
   body .container-wide { padding: 0 30px; } }
@@ -73,7 +78,7 @@ section.dark, .dark section { background-color: #1e2022; color: #2e2e2e; }
 
 #page-title .page-title { text-align: center; padding: 0; }
 
-#page-title .page-title > h1 { font-family: "Poppins", sans-serif; font-size: 2.5rem; line-height: 1.2; font-weight: 400; margin-bottom: 1rem; }
+#page-title .page-title > h1 { font-family: 'Prompt', sans-serif;; font-size: 2.5rem; line-height: 1.2; font-weight: 400; margin-bottom: 1rem; }
 
 #page-title .page-title > span { font-weight: 400; font-size: 14px; }
 
@@ -462,7 +467,7 @@ Topbar
 
 #header .header-inner #logo a .logo-default, #header #header-wrap #logo a .logo-default { display: block; }
 
-#header .header-inner #logo a, #header .header-inner #logo a span, #header #header-wrap #logo a, #header #header-wrap #logo a span { font-family: inherit; font-size: 40px; color: #1e2022; font-weight: 800; letter-spacing: 1.5px; }
+#header .header-inner #logo a, #header .header-inner #logo a span, #header #header-wrap #logo a, #header #header-wrap #logo a span { font-family: 'Prompt', sans-serif; font-size: 40px; color: #1e2022; font-weight: 800; letter-spacing: 1.5px; }
 
 #header[data-fullwidth="true"] .header-inner .container, #header[data-fullwidth="true"] #header-wrap .container { max-width: 100%; padding: 0 30px; }
 
@@ -578,7 +583,7 @@ Main Menu
 
 #mainMenu nav > ul > li { float: left; border: 0; -webkit-transition: all .3s ease; transition: all .3s ease; margin-left: 6px; position: relative; }
 
-#mainMenu nav > ul > li > a { position: relative; font-family: "Poppins", sans-serif; padding: 10px 12px; text-transform: uppercase; font-size: 12px; font-weight: 600; letter-spacing: 0.6px; color: #000000; border-radius: 0; border-width: 0; border-style: solid; border-color: transparent; -webkit-transition: all .3s ease; transition: all .3s ease; line-height: normal; }
+#mainMenu nav > ul > li > a { position: relative; font-family: 'Prompt', sans-serif;; padding: 10px 12px; text-transform: uppercase; font-size: 12px; font-weight: 600; letter-spacing: 0.6px; color: #000000; border-radius: 0; border-width: 0; border-style: solid; border-color: transparent; -webkit-transition: all .3s ease; transition: all .3s ease; line-height: normal; }
 
 #mainMenu nav > ul > li > a > i { margin-left: 2px; margin-right: 6px; min-width: 14px; font-size: 14px; }
 
@@ -586,13 +591,13 @@ Main Menu
 
 #mainMenu nav > ul > li.hover-active > a, #mainMenu nav > ul > li.hover-active > span, #mainMenu nav > ul > li.current > a, #mainMenu nav > ul > li.current > span, #mainMenu nav > ul > li:hover > a, #mainMenu nav > ul > li:hover > span, #mainMenu nav > ul > li:focus > a, #mainMenu nav > ul > li:focus > span { color: #2250fc; }
 
-#mainMenu nav > ul > li.dropdown:before { content: "\e930"; -webkit-transform: rotate(90deg); -ms-transform: rotate(90deg); transform: rotate(90deg); font-family: "inspiro-icons"; opacity: 0.6; position: absolute; right: 16px; color: #c1c3ce; font-size: 16px; display: none; }
+#mainMenu nav > ul > li.dropdown:before { content: "\e930"; -webkit-transform: rotate(90deg); -ms-transform: rotate(90deg); transform: rotate(90deg); font-family: 'Prompt', sans-serif; opacity: 0.6; position: absolute; right: 16px; color: #c1c3ce; font-size: 16px; display: none; }
 
 #mainMenu nav > ul > li .dropdown-arrow { display: none; height: 40px; width: 50px; position: absolute; z-index: 1; right: -10px; top: 0; cursor: pointer; }
 
 #mainMenu nav > ul > li .dropdown-menu { background-position: right bottom; background-repeat: no-repeat; min-width: 230px; top: auto; background-color: #fff; border: 0; color: #000000; border-style: solid; border-color: #fbfbfb; border-width: 1px !important; left: auto; margin: 0; margin-top: -6px; border-radius: 4px; box-shadow: 0 33px 32px rgba(0, 0, 0, 0.1); padding: 10px; display: none; position: absolute; }
 
-#mainMenu nav > ul > li .dropdown-menu > li > a, #mainMenu nav > ul > li .dropdown-menu > li > span, #mainMenu nav > ul > li .dropdown-menu > li [class*="col-"] > ul > li > a { font-size: 12px; line-height: 14px; font-weight: 500; font-style: normal; color: #444; font-family: "Poppins", sans-serif; padding: 12px 20px 12px 18px; display: block; -webkit-transition: .3s ease; transition: .3s ease; }
+#mainMenu nav > ul > li .dropdown-menu > li > a, #mainMenu nav > ul > li .dropdown-menu > li > span, #mainMenu nav > ul > li .dropdown-menu > li [class*="col-"] > ul > li > a { font-size: 12px; line-height: 14px; font-weight: 500; font-style: normal; color: #444; font-family: 'Prompt', sans-serif;; padding: 12px 20px 12px 18px; display: block; -webkit-transition: .3s ease; transition: .3s ease; }
 
 #mainMenu nav > ul > li .dropdown-menu > li > a:focus, #mainMenu nav > ul > li .dropdown-menu > li > a:hover, #mainMenu nav > ul > li .dropdown-menu > li > a:active, #mainMenu nav > ul > li .dropdown-menu > li > span:focus, #mainMenu nav > ul > li .dropdown-menu > li > span:hover, #mainMenu nav > ul > li .dropdown-menu > li > span:active, #mainMenu nav > ul > li .dropdown-menu > li [class*="col-"] > ul > li > a:focus, #mainMenu nav > ul > li .dropdown-menu > li [class*="col-"] > ul > li > a:hover, #mainMenu nav > ul > li .dropdown-menu > li [class*="col-"] > ul > li > a:active { background-color: transparent; color: #2250fc; cursor: pointer; }
 
@@ -608,7 +613,7 @@ Main Menu
 
 #mainMenu nav > ul > li.mega-menu-item .mega-menu-content { padding: 20px; }
 
-#mainMenu nav > ul > li.mega-menu-item .mega-menu-content .mega-menu-title { font-family: "Poppins", sans-serif; color: #000000; font-size: 13px; line-height: 14px; font-weight: 600; text-transform: uppercase; padding-bottom: 12px; }
+#mainMenu nav > ul > li.mega-menu-item .mega-menu-content .mega-menu-title { font-family: 'Prompt', sans-serif;; color: #000000; font-size: 13px; line-height: 14px; font-weight: 600; text-transform: uppercase; padding-bottom: 12px; }
 
 #mainMenu nav > ul > li.mega-menu-item .mega-menu-content li ~ .mega-menu-title { margin-top: 12px; }
 
@@ -622,7 +627,7 @@ Main Menu
 
 #mainMenu nav > ul > li .dropdown-submenu { position: relative; }
 
-#mainMenu nav > ul > li .dropdown-submenu:before { line-height: 40px; content: "\e930"; font-family: "inspiro-icons"; opacity: 0.6; position: absolute; right: 16px; color: #2e2e2e; font-size: 12px; -webkit-transition: all .2s ease; transition: all .2s ease; }
+#mainMenu nav > ul > li .dropdown-submenu:before { line-height: 40px; content: "\e930"; font-family: 'inspiro-icons'; opacity: 0.6; position: absolute; right: 16px; color: #2e2e2e; font-size: 12px; -webkit-transition: all .2s ease; transition: all .2s ease; }
 
 #mainMenu nav > ul > li .dropdown-submenu > .dropdown-menu { margin-left: -6px; left: 100%; top: -1px; z-index: 1; }
 
@@ -957,7 +962,7 @@ Main Menu: Responsive
 
 .header-extras > ul > li .p-dropdown a > span { position: absolute; top: -8px; font-size: 9px; opacity: 1; right: -2px; }
 
-.header-extras > ul > li > a:not(.btn), .header-extras > ul > li .topbar-dropdown > .title { font-family: "Poppins", sans-serif; font-size: 12px; position: relative; display: block; font-style: normal; text-transform: uppercase; font-weight: 700; }
+.header-extras > ul > li > a:not(.btn), .header-extras > ul > li .topbar-dropdown > .title { font-family: 'Prompt', sans-serif;; font-size: 12px; position: relative; display: block; font-style: normal; text-transform: uppercase; font-weight: 700; }
 
 .header-extras > ul > li > a:not(.btn) i, .header-extras > ul > li .topbar-dropdown > .title i { font-size: 14px; position: relative; }
 
@@ -1193,7 +1198,7 @@ Page Menu
 
 .page-menu nav > ul { list-style: none; padding: 0; margin: 0; position: relative; }
 
-.page-menu nav > ul > li { -webkit-transition: all .3s ease; transition: all .3s ease; position: relative; border: 0; display: inline-block; float: none; padding: 0px 2px; font-family: "Poppins", sans-serif; }
+.page-menu nav > ul > li { -webkit-transition: all .3s ease; transition: all .3s ease; position: relative; border: 0; display: inline-block; float: none; padding: 0px 2px; font-family: 'Prompt', sans-serif;; }
 
 .page-menu nav > ul > li:last-child { margin-right: 0; }
 
@@ -1207,9 +1212,9 @@ Page Menu
 
 .page-menu nav > ul > li.dropdown a { padding-right: 20px; }
 
-.page-menu nav > ul > li.dropdown:before { font-size: 12px; -webkit-transition: all .2s ease; transition: all .2s ease; content: "\e92e"; font-family: "inspiro-icons"; right: 10px; top: 1px; position: absolute; color: #3c4043; z-index: 2; }
+.page-menu nav > ul > li.dropdown:before { font-size: 12px; -webkit-transition: all .2s ease; transition: all .2s ease; content: "\e92e"; font-family: 'Prompt', sans-serif; right: 10px; top: 1px; position: absolute; color: #3c4043; z-index: 2; }
 
-.page-menu nav > ul > li .dropdown-menu { position: absolute; text-align: left; list-style: none; font-family: "Poppins", sans-serif; padding: 14px 20px; width: auto; top: 50px; left: 0; margin: 0; border-radius: 4px; background-color: #fff; border: 1px solid #e4e6ef; min-width: 180px; box-shadow: 0 14px 20px rgba(0, 0, 0, 0.1); }
+.page-menu nav > ul > li .dropdown-menu { position: absolute; text-align: left; list-style: none; font-family: 'Prompt', sans-serif;; padding: 14px 20px; width: auto; top: 50px; left: 0; margin: 0; border-radius: 4px; background-color: #fff; border: 1px solid #e4e6ef; min-width: 180px; box-shadow: 0 14px 20px rgba(0, 0, 0, 0.1); }
 
 .page-menu nav > ul > li .dropdown-menu > li { width: 100%; }
 
@@ -1289,7 +1294,7 @@ body:not(.breakpoint-xs):not(.breakpoint-sm):not(.breakpoint-md) .page-menu nav 
   .page-menu.inverted nav > ul > li ul { background-color: #1e2022; }
   .page-menu.page-menu-active nav { display: block; } }
 
-.sidebar-menu { font-family: "Poppins", sans-serif; }
+.sidebar-menu { font-family: 'Prompt', sans-serif;; }
 
 .sidebar-menu label { display: block; text-transform: uppercase; font-size: 14px; font-weight: 700; letter-spacing: .5px; }
 
@@ -1322,9 +1327,9 @@ html { font-size: 88%; }
 
 @media all and (max-width: 768px) { html { font-size: 81.25%; } }
 
-body { font-size: 1rem; line-height: 1.65714286em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "Poppins", sans-serif; color: #3c4043; }
+body { font-size: 1rem; line-height: 1.65714286em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: 'Prompt', sans-serif;; color: #3c4043; }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { font-family: inherit; color: #1e2022; margin: 0; letter-spacing: 0.5px; }
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { font-family: 'Prompt', sans-serif;; color: #1e2022; margin: 0; letter-spacing: 0.5px; }
 
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small { font-weight: 100; }
 
@@ -1361,7 +1366,7 @@ h6:not(:last-child), .h6:not(:last-child) { margin-bottom: 6px; }
 
 .display-4 { font-weight: 400; }
 
-p { font-size: 1rem; font-style: normal; font-weight: 400; text-transform: none; line-height: 1.7; letter-spacing: 0; color: #3c4043; font-family: "Poppins", sans-serif; }
+p { font-size: 1rem; font-style: normal; font-weight: 400; text-transform: none; line-height: 1.7; letter-spacing: 0; color: #3c4043; font-family: 'Prompt', sans-serif;; }
 
 ul.bullets { list-style: inside; }
 
@@ -1375,7 +1380,7 @@ a:not(.btn):not(.badge):not(.btn):not([href]):not([tabindex]) { color: #3c4043; 
 
 .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6, .dark .h1, .dark .h2, .dark .h3, .dark .h4, .dark .h5, .dark .h6 { color: #e4e6ef; }
 
-.font-pacifico { font-family: 'Dancing Script' !important; }
+.font-pacifico { font-family: 'Prompt', sans-serif !important; }
 
 .font-nothing-you-could-do, .font-nothing-you-could-do a, .font-nothing-you-could-do h1, .font-nothing-you-could-do h2, .font-nothing-you-could-do h3, .font-nothing-you-could-do h4, .font-nothing-you-could-do h5, .font-nothing-you-could-do h6, h1.font-nothing-you-could-do, h2.font-nothing-you-could-do, h3.font-nothing-you-could-do, h4.font-nothing-you-could-do, h5.font-nothing-you-could-do, h6.font-nothing-you-could-do { font-family: 'Nothing You Could Do', cursive !important; font-weight: normal !important; }
 
@@ -2194,11 +2199,11 @@ Portfolio
 /* ----------------------------------------------------------------
     FOOTER
 -----------------------------------------------------------------*/
-#footer { display: block; position: relative; background-color: #f9f9fa; font-size: 14px; line-height: 32px; font-weight: 400; font-family: inherit; }
+#footer { display: block; position: relative; background-color: #f9f9fa; font-size: 14px; line-height: 32px; font-weight: 400; font-family: 'Prompt', sans-serif;; }
 
 #footer a:not(.btn):not(:hover) { color: #3c4043; }
 
-#footer p { font-family: inherit; }
+#footer p { font-family: 'Prompt', sans-serif;; }
 
 #footer a:not(.btn) { font-weight: 400; }
 
@@ -2755,7 +2760,7 @@ iframe { width: 100%; }
 
 .fc-view, .fc-view > table { z-index: 0 !important; }
 
-.fc-toolbar .fc-button { font-size: 12px !important; padding: 4px 14px; height: 34px; font-family: inherit; background-color: #ffffff !important; border-color: #ebebeb !important; color: #4c5667 !important; text-shadow: none !important; background-image: unset !important; box-shadow: unset !important; }
+.fc-toolbar .fc-button { font-size: 12px !important; padding: 4px 14px; height: 34px; font-family: 'Prompt', sans-serif;; background-color: #ffffff !important; border-color: #ebebeb !important; color: #4c5667 !important; text-shadow: none !important; background-image: unset !important; box-shadow: unset !important; }
 
 .fc-toolbar .fc-button:hover, .fc-toolbar .fc-button:focus, .fc-toolbar .fc-button:active, .fc-toolbar .fc-button.active { border-color: #ebedf2 !important; background-color: #f4f5f8 !important; color: #4c5667 !important; }
 
@@ -3934,7 +3939,7 @@ th .form-check .form-check-input, td .form-check .form-check-input { float: none
 
 .accordion .ac-item .ac-title { font-weight: 500; position: relative; padding-right: 10px; margin: 0; font-size: 1em; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 
-.accordion .ac-item .ac-title:before { font-size: 18px; content: "\e9be"; font-family: "inspiro-icons"; right: 0; position: absolute; }
+.accordion .ac-item .ac-title:before { font-size: 18px; content: "\e9be"; font-family: 'Prompt', sans-serif; right: 0; position: absolute; }
 
 .accordion .ac-item .ac-title > i { margin-right: 8px; }
 
@@ -4026,7 +4031,7 @@ ul.avatars > li:not(:last-child) { margin-right: -0.25rem; }
 -------------------------------------------------------------------------*/
 a:not([href]):not([tabindex]):not(.btn) { color: none; }
 
-button.btn, .btn:not(.close):not(.mfp-close), a.btn:not([href]):not([tabindex]) { display: inline-block; font-family: inherit; border-radius: 0.42rem 0.42rem 0.42rem 0.42rem; font-size: 12px; font-weight: 600; letter-spacing: .5px; text-decoration: none; outline: none; padding: 12px 18px; position: relative; text-transform: uppercase; background-color: #2250fc; border-color: #2250fc; border-width: 1px; border-style: solid; color: #fff; -webkit-transition: all 0.3s; transition: all 0.3s; margin-bottom: 6px; outline: none; line-height: 14px; cursor: pointer; }
+button.btn, .btn:not(.close):not(.mfp-close), a.btn:not([href]):not([tabindex]) { display: inline-block; font-family: 'Prompt', sans-serif;; border-radius: 0.42rem 0.42rem 0.42rem 0.42rem; font-size: 12px; font-weight: 600; letter-spacing: .5px; text-decoration: none; outline: none; padding: 12px 18px; position: relative; text-transform: uppercase; background-color: #2250fc; border-color: #2250fc; border-width: 1px; border-style: solid; color: #fff; -webkit-transition: all 0.3s; transition: all 0.3s; margin-bottom: 6px; outline: none; line-height: 14px; cursor: pointer; }
 
 button.btn:after, .btn:not(.close):not(.mfp-close):after, a.btn:not([href]):not([tabindex]):after { content: ''; position: absolute; z-index: -1; -webkit-transition: all 0.3s; transition: all 0.3s; }
 
@@ -6065,13 +6070,13 @@ a.list-group-item.active:hover, a.list-group-item.active.active { color: #fff !i
 
 .post-navigation .post-next { right: 25px; text-align: right; }
 
-.post-navigation .post-next:before { content: "\e930"; font-family: "inspiro-icons"; font-size: 20px; position: absolute; top: 50%; -webkit-transform: translate3d(0, -50%, 0); transform: translate3d(0, -50%, 0); -webkit-transition: all 0.3s ease; transition: all 0.3s ease; right: 10px; padding-top: 2px; }
+.post-navigation .post-next:before { content: "\e930"; font-family: 'Prompt', sans-serif; font-size: 20px; position: absolute; top: 50%; -webkit-transform: translate3d(0, -50%, 0); transform: translate3d(0, -50%, 0); -webkit-transition: all 0.3s ease; transition: all 0.3s ease; right: 10px; padding-top: 2px; }
 
 .post-navigation .post-next:hover:before { -webkit-transform: translate3d(5px, -50%, 0); transform: translate3d(5px, -50%, 0); }
 
 .post-navigation .post-prev { left: 25px; }
 
-.post-navigation .post-prev:before { content: "\e92f"; font-family: "inspiro-icons"; font-size: 20px; position: absolute; top: 50%; -webkit-transform: translate3d(0, -50%, 0); transform: translate3d(0, -50%, 0); -webkit-transition: all 0.3s ease; transition: all 0.3s ease; padding-top: 2px; left: 10px; }
+.post-navigation .post-prev:before { content: "\e92f"; font-family: 'Prompt', sans-serif; font-size: 20px; position: absolute; top: 50%; -webkit-transform: translate3d(0, -50%, 0); transform: translate3d(0, -50%, 0); -webkit-transition: all 0.3s ease; transition: all 0.3s ease; padding-top: 2px; left: 10px; }
 
 .post-navigation .post-prev:hover:before { -webkit-transform: translate3d(-5px, -50%, 0); transform: translate3d(-5px, -50%, 0); }
 
@@ -6096,7 +6101,7 @@ a.list-group-item.active:hover, a.list-group-item.active.active { color: #fff !i
 
 .breadcrumb ul .breadcrumb-item, .breadcrumb ul li, .breadcrumb ol .breadcrumb-item, .breadcrumb ol li { display: inline; position: relative; opacity: .8; }
 
-.breadcrumb ul .breadcrumb-item + li:before, .breadcrumb ul li + li:before, .breadcrumb ol .breadcrumb-item + li:before, .breadcrumb ol li + li:before { content: "\e930"; font-family: "inspiro-icons"; margin: 0 5px; background-color: transparent; }
+.breadcrumb ul .breadcrumb-item + li:before, .breadcrumb ul li + li:before, .breadcrumb ol .breadcrumb-item + li:before, .breadcrumb ol li + li:before { content: "\e930"; font-family: 'inspiro-icons'; margin: 0 5px; background-color: transparent; }
 
 .breadcrumb ul .breadcrumb-item a, .breadcrumb ul li a, .breadcrumb ol .breadcrumb-item a, .breadcrumb ol li a { color: #3c4043; }
 

@@ -20,4 +20,11 @@ class ShowController extends Controller
         }
         return;
     }
+    public function SearchContent()
+    {
+        if (isset($_GET['word'])) {
+            return view('pages.search-content')->with('word', $_GET['word']);
+        }
+        return;
+    }
 }

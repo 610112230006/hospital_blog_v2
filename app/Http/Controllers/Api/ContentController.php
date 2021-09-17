@@ -45,24 +45,24 @@ class ContentController extends Controller
                 'title' => 'required',
                 'type' => 'required',
                 'detail' => 'required',
+                'time_show' => 'required',
+                // 'hide_show' => 'required',
             ],
             [
                 'title.required' => 'กรุณากรอกหัวเรื่อง',
                 'type.required' => 'กรุณาเลือกหมวดหมู่',
                 'detail.required' => 'กรุณากรอกรายละเอียด',
+                'time_show.required' => 'กรุณาเลือกวันเผยแพร่',
+                // 'hide_show.required' => 'กรุณาเลือกวันสิ้นสุดการเผยแพร่',
             ]
         );
 
-        if ($request->time_show == '') {
-            $time_show = date('Y-m-d');
-        } else {
-            $time_show = $request->time_show;
-        }
         $qry =  Content::create([
             'user_id' => Auth::id(),
             'title' => $request->title,
             'type' => $request->type,
-            'time_show' => $time_show,
+            'time_show' => $request->time_show,
+            'hide_show' => $request->hide_show,
             'detail' => $request->detail,
         ]);
         return response()->json($qry);
@@ -106,17 +106,22 @@ class ContentController extends Controller
                 'title' => 'required',
                 'type' => 'required',
                 'detail' => 'required',
+                'time_show' => 'required',
+                // 'hide_show' => 'required',
             ],
             [
                 'title.required' => 'กรุณากรอกหัวเรื่อง',
                 'type.required' => 'กรุณาเลือกหมวดหมู่',
                 'detail.required' => 'กรุณากรอกรายละเอียด',
+                'time_show.required' => 'กรุณาเลือกวันเผยแพร่',
+                // 'hide_show.required' => 'กรุณาเลือกวันสิ้นสุดการเผยแพร่',
             ]
         );
         $res = Content::find($id)->update([
             'title' => $request->title,
             'type' => $request->type,
             'time_show' => $request->time_show,
+            'hide_show' => $request->hide_show,
             'detail' => $request->detail,
         ]);
         return response()->json(['req' => $res, 'id' => $id]);

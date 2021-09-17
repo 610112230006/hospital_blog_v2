@@ -39,7 +39,7 @@ class ForgotCustom extends Controller
 
         Mail::send('email.forgetPassword', ['token' => $token], function ($message) use ($request) {
             $message->to($request->email);
-            $message->from('610112230006@bru.ac.th', 'กลุ่มคุ้มครองจริยธรรม กฎหมายและวินัย กรมการแพทย์');
+            $message->from('dr.dev.mop@gmail.com', 'กลุ่มคุ้มครองจริยธรรม กฎหมายและวินัย กรมการแพทย์');
             $message->subject('ลืมรหัสผ่าน');
         });
 

@@ -10,12 +10,19 @@ window.Vue = require('vue');
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import VueCarousel from 'vue-carousel';
+import {BadgerAccordion, BadgerAccordionItem} from 'vue-badger-accordion'
+
+import vmodal from 'vue-js-modal'
+Vue.use(vmodal)
+
 
 Vue.use(VueCarousel);
 Vue.use(VueSweetalert2);
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('BadgerAccordion', BadgerAccordion)
+Vue.component('BadgerAccordionItem', BadgerAccordionItem)
+
+
 Vue.component('managecate-component', require('./components/ManageCate.vue').default);
 Vue.component('createuser-component', require('./components/CreateUser.vue').default);
 Vue.component('manageuser-component', require('./components/ShowUser.vue').default);
@@ -30,9 +37,10 @@ Vue.component('usereditpersonal-component', require('./components/UserEditPerson
 Vue.component('contentbycate-component', require('./components/ContentByCate.vue').default);
 Vue.component('contentbysubcate-component', require('./components/ContentBySubcate.vue').default);
 Vue.component('menu-component', require('./components/Menu.vue').default);
-
-
-
+Vue.component('searchcontent-component', require('./components/SearchContent.vue').default);
+Vue.component('contact-component', require('./components/Contact.vue').default);
+Vue.component('managepopup-component', require('./components/ManagePopup.vue').default);
+Vue.component('manageslide-component', require('./components/ManageSlide.vue').default);
 const app = new Vue({
     el: '#app',
 });

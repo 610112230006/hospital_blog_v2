@@ -126,7 +126,7 @@
                                     @click.prevent="AddForm"
                                     class="btn btn-primary"
                                 >
-                                    เพิ่มบัญชีผู้ใช้
+                                    ตกลง
                                 </button>
                             </div>
                         </form>

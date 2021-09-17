@@ -9,37 +9,27 @@
                 <div class="row" style="transform: none;">
                     <!-- content -->
                     <div class="content col-lg-9">
+                        <span
+                            v-for="(image, index) in files"
+                            :key="index"
+                            class="p-3"
+                            v-if="image.type == 'image'"
+                        >
+                            <img
+                                @click="showMultiple(image.url)"
+                                alt=""
+                                style="width:100%;max-width:300px"
+                                class="img-thumbnail"
+                                :src="'storage/' + image.url"
+                            />
+                        </span>
+
                         <!-- Blog -->
-                        <div id="blog" class="single-post">
+                        <div>
                             <!-- Post single item-->
-                            <div class="post-item">
-                                <div class="post-item-wrap">
-                                    <div class="post-image">
-                                        <carousel
-                                            :perPage="1"
-                                            :autoplay="true"
-                                            :paginationEnabled="false"
-                                            :navigationEnabled="true"
-                                            :autoplayHoverPause="true"
-                                            :loop="true"
-                                            :autoplayTimeout="3000"
-                                        >
-                                            <slide
-                                                v-for="(image, index) in files"
-                                                :key="index"
-                                                v-if="image.type == 'image'"
-                                            >
-                                                <img
-                                                    alt=""
-                                                    class="img-fluid"
-                                                    width="100%"
-                                                    :src="
-                                                        'storage/' + image.url
-                                                    "
-                                                />
-                                            </slide>
-                                        </carousel>
-                                    </div>
+                            <div>
+                                <div>
+                                    <div class="line"></div>
                                     <div class="post-item-description">
                                         <div
                                             class="d-flex justify-content-between"
@@ -70,13 +60,13 @@
                                             <span class="post-meta-date"
                                                 ><i class="icon-clock"></i
                                                 >{{
-                                                    `เขียนเมื่อ ${content.created_at}, `
+                                                    `เขียนเมื่อ ${content.time_show}, `
                                                 }}</span
                                             >
                                             <span class="post-meta-comments"
                                                 ><i class="icon-user"></i>
                                                 {{
-                                                    `ผู้เขียน ${content.f_name} ${content.l_name}, `
+                                                    `ผู้เขียน ${content.f_name}, `
                                                 }}</span
                                             >
                                             <span class="post-meta-comments"
@@ -86,10 +76,12 @@
                                                 }}</span
                                             >
                                         </div>
+                                        <div class="line"></div>
                                         <div v-html="content.detail"></div>
                                     </div>
+                                    <div class="line"></div>
                                     <h4>ดาวน์โหลดไฟล์</h4>
-                                    <div class="post-tags">
+                                    <div class="tags">
                                         <a
                                             href="javascript:void(0)"
                                             v-for="file in files"
@@ -104,23 +96,64 @@
                         </div>
                     </div>
                     <!-- end: content -->
+                    <div
+                        class="sidebar sticky-sidebar col-lg-3"
+                        style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;"
+                    >
+                        <!--Tabs with Posts-->
+
+                        <!--End: Tabs with Posts-->
+                        <!-- Twitter widget -->
+
+                        <!-- end: Twitter widget-->
+                        <!--widget tags -->
+
+                        <!--end: widget tags -->
+                        <!--widget newsletter-->
+
+                        <!--end: widget newsletter-->
+                        <slidenew-component></slidenew-component>
+                    </div>
+                    <!-- end: Sidebar-->
+                </div>
+                <div>
+                    <!-- all props & events -->
+                    <vue-easy-lightbox
+                        escDisabled
+                        moveDisabled
+                        :visible="visible"
+                        :imgs="imgs"
+                        :index="index"
+                        @hide="handleHide"
+                    ></vue-easy-lightbox>
                 </div>
             </div>
         </section>
     </div>
 </template>
 <script>
+import SlideNew from "./SlideNew";
+import VueEasyLightbox from "vue-easy-lightbox";
+
 export default {
+    components: {
+        "slidenew-component": SlideNew,
+        VueEasyLightbox
+    },
     props: ["id_content"],
     data() {
         return {
             content: {},
             files: [],
             checkAuth: false,
-            statistic: []
+            statistic: [],
+            imgs: "", // Img Url , string or Array of string
+            visible: false,
+            index: 0, // default: 0
+            images: []
         };
     },
-    
+
     mounted() {
         this.fetchData();
         axios.get(`api/push-statistic/${this.id_content}`).then(res => {});
@@ -131,6 +164,31 @@ export default {
             });
     },
     methods: {
+        showSingle() {
+            this.imgs = "images/slider/slider1.JPG";
+            // or
+            this.imgs = {
+                title: "this is a placeholder",
+                src: "images/slider/slider1.JPG"
+            };
+            this.show();
+        },
+        showMultiple(url) {
+            this.imgs = [
+                `storage/${url}`
+                // "http://via.placeholder.com/350x150"
+            ];
+
+            this.index = 1; // index of imgList
+            this.show();
+        },
+        show() {
+            this.visible = true;
+        },
+        handleHide() {
+            this.visible = false;
+        },
+
         fetchData() {
             axios.get(`api/get-content-by-id/${this.id_content}`).then(res => {
                 let content = res.data[0];
@@ -183,7 +241,7 @@ export default {
                                         timer: 1000
                                     })
                                     .then(() => {
-                                        window.location.href = '/'
+                                        window.location.href = "/";
                                         // this.fetchData();
                                     });
                             })

@@ -2,40 +2,39 @@
     <div>
         <carousel
             :perPage="1"
-            :loop="true"
-            :autoplayHoverPause="true"
-            :autoplay="true"
-            :navigationEnabled="true"
+            :loop="true"            
+            :autoplay="true"            
             style="width:100%"
         >
-            <slide>
+            <slide v-for="slide in slides">
                 <img
-                    src="images/slider/slider1.JPG"
+                    :src="'storage/'+slide.url"
                     width="100%"
                     class="img-fluid"
                     alt=""
                 />
             </slide>
-            <slide>
-                <img
-                    src="images/slider/slider2.JPG"
-                    width="100%"
-                    class="img-fluid"
-                    alt=""
-                />
-            </slide>
-            <slide>
-                <img
-                    src="images/slider/slider3.JPG"
-                    width="100%"
-                    class="img-fluid"
-                    alt=""
-                />
-            </slide>
+           
         </carousel>
     </div>
 </template>
 <script>
-export default {};
+export default {
+    data() {
+        return {
+            slides:[]
+        }
+    },
+    mounted() {
+        this.getImageSlide();
+    },
+    methods: {
+        getImageSlide() {
+            axios.get("api/get-img-slide").then(res => {
+                this.slides = res.data;                
+            });
+        }
+    },
+};
 </script>
 <style lang=""></style>

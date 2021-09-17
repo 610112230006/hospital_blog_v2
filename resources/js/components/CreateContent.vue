@@ -48,11 +48,15 @@
                                     v-model="content.type"
                                 >
                                     <optgroup
-                                        v-for="optionCate in optionCates"
+                                        v-for="(optionCate,
+                                        indexC) in optionCates"
                                         :label="optionCate.name"
+                                        :key="indexC"
                                     >
                                         <option
-                                            v-for="optionSubCate in optionSubCates"
+                                            v-for="(optionSubCate,
+                                            indexS) in optionSubCates"
+                                            :key="indexS"
                                             v-if="
                                                 optionSubCate.category_id ==
                                                     optionCate.id
@@ -94,7 +98,6 @@
                                     id="upload-img"
                                     @change="changImage"
                                 />
-                                
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">
@@ -130,20 +133,8 @@
                                     {{ error.detail[0] }}
                                 </div>
                             </div>
-                            <div class="form-check">
-                                <input
-                                    class="form-check-input"
-                                    v-model="showAllTime"
-                                    id="exampleCheck1"
-                                    type="checkbox"
-                                />
-                                <label
-                                    class="form-check-label"
-                                    for="exampleCheck1"
-                                    >เผยแพร่ตอนนี้</label
-                                >
-                            </div>
-                            <div v-if="!showAllTime" class="form-group row">
+                           
+                            <div class="form-group row">
                                 <label
                                     for="example-date-input"
                                     class="col-2 col-form-label"
@@ -152,11 +143,39 @@
                                 <div class="col-10">
                                     <input
                                         class="form-control"
-                                        type="date"
+                                        type="datetime-local"
                                         v-model="content.time_show"
                                         value=""
-                                        id="example-date-input"
+                                        id="example-datetime-local-input"
                                     />
+                                    <div
+                                        v-if="error.time_show"
+                                        class="is-invalid"
+                                    >
+                                        {{ error.time_show[0] }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="!NoHideTime">
+                                <label
+                                    for="example-date-input"
+                                    class="col-2 col-form-label"
+                                    >ถึง</label
+                                >
+                                <div class="col-10">
+                                    <input
+                                        class="form-control"
+                                        type="datetime-local"
+                                        v-model="content.hide_show"
+                                        value=""
+                                        id="example-datetime-local-input"
+                                    />
+                                    <div
+                                        v-if="error.hide_show"
+                                        class="is-invalid"
+                                    >
+                                        {{ error.hide_show[0] }}
+                                    </div>
                                 </div>
                             </div>
 
@@ -179,7 +198,7 @@ export default {
     components: {},
     data() {
         return {
-            showAllTime: true,
+            NoHideTime: false,
             content: [],
             optionCates: [],
             optionSubCates: [],
@@ -263,19 +282,14 @@ export default {
         },
         uploadContent() {
             this.error = [];
-            let fixTime;
-            if (this.showAllTime) {
-                fixTime = "";
-            } else {
-                fixTime = this.content.time_show;
-            }
+            
             let data = {
                 title: this.content.title,
                 type: this.content.type,
-                time_show: fixTime,
+                time_show: this.content.time_show,
+                hide_show: this.content.hide_show,
                 detail: CKEDITOR.instances.detail.getData()
             };
-
             axios
                 .post("content", data)
                 .then(res => {
@@ -320,7 +334,7 @@ export default {
                                             timer: 1000
                                         })
                                         .then(() => {
-                                            window.location.href = "/";
+                                            window.location.href = `detail-content?id_content=${id_content}`;
                                         });
                                 })
                                 .catch(error => {

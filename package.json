@@ -24,7 +24,10 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "vue-badger-accordion": "^2.0.2",
         "vue-carousel": "^0.18.0",
+        "vue-easy-lightbox": "^0.16.1",
+        "vue-js-modal": "^2.0.1",
         "vue-sweetalert2": "^5.0.2"
     }
 }

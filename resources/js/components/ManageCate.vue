@@ -254,6 +254,15 @@
                                     <div class="d-flex justify-content-center">
                                         <div>
                                             <button
+                                                @click.prevent="reForm"
+                                                class="btn btn-secondary"
+                                            >
+                                                ยกเลิก
+                                            </button>
+                                        </div>
+                                        &nbsp
+                                        <div>
+                                            <button
                                                 @click.prevent="updateCate"
                                                 class="btn btn-primary"
                                             >
@@ -335,6 +344,15 @@
                                     </div>
 
                                     <div class="d-flex justify-content-center">
+                                        <div>
+                                            <button
+                                                @click.prevent="reForm"
+                                                class="btn btn-secondary"
+                                            >
+                                                ยกเลิก
+                                            </button>
+                                        </div>
+                                        &nbsp
                                         <div>
                                             <button
                                                 @click.prevent="updateSubCate"
@@ -430,13 +448,13 @@ export default {
                 });
         },
         editCate(id_cate, name) {
-            window.scrollTo(0, 300); 
+            window.scrollTo(0, 300);
             this.nameMainCate = name;
             this.editId = id_cate;
             this.showcard = "editcate";
         },
         editSubCate(id_subcate) {
-            window.scrollTo(0, 300); 
+            window.scrollTo(0, 300);
             axios
                 .get(`api/get-one-subcate/${id_subcate}`)
                 .then(res => {

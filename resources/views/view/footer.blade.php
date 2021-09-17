@@ -11,7 +11,7 @@
                         <p class="mb-5">
                             ที่อยู่: กรมการแพทย์ กระทรวงสาธารณสุข 88/23 ถ.ติวานนท์ ต.ตลาดขวัญ อ.เมือง จ.นนทบุรี 11000
                             <br />
-                            E-mail : team.winai2020@gmail.com
+                            E-mail : law.dms@dms.mail.go.th
                             <br>
                             โทรศัพท์ : 0-2590-6157 , 0-2590-6159
                     
@@ -25,10 +25,10 @@
                         <div class="d-flex justify-content-end">
                             <div class="col-lg-3">
                                 <div class="widget">
-                                    <div class="widget-title">social media</div>
+                                    <div class="widget-title">ผังเว็บไซต</div>
                                     <ul class="list">
-                                        <li><a href="#">FaceBook</a></li>
-                                        <li><a href="#">Ling</a></li>
+                                        <li><a href="#"></a></li>
+                                        <li><a href="#">Line</a></li>
                                         <li><a href="#">Instagram</a></li>
                                         <li><a href="#">Twitter</a></li>
                                      
@@ -69,7 +69,13 @@
                                             <a href="{{ url('manage-category', []) }}">จัดการหมวดหมู่</a>
 
                                         </li>
+                                        <li>
+                                            <a href="{{ url('manage-popup', []) }}">จัดการป๊อปอัพ</a>
 
+                                        </li>
+                                        <li>
+                                            <a href="{{ url('manage-slide', []) }}">จัดการภาพสไลด์</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -82,7 +88,7 @@
     <div class="copyright-content">
         <div class="container">
             <div class="copyright-text text-center">
-                &copy; 2021 By Dr.comp - Responsive Multi-Purpose HTML5 Laravel VueJs
+                Copyright 2021 | กรมการแพทย์ กระทรวงสาธารณสุข
             </div>
         </div>
     </div>

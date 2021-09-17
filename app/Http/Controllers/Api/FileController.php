@@ -54,5 +54,49 @@ class FileController extends Controller
         }
         return;
     }
+    public function uploadPopup(Request $request)
+    {
+        if ($request->images) {
+            $uploadedFiles = $request->images;
+            foreach ($uploadedFiles as $file) {
+                $name = $file->getClientOriginalName();
+                $pathFile = 'popup/';
+                $file_name = time() . '_' . $file->getClientOriginalName();
+                $file_path = $file->storeAs($pathFile, $file_name, 'public');
+
+                $resFile = FileUpload::create([
+                    'id_content' => 0,
+                    'type' => 'popup',
+                    'url' => $file_path,
+                    'name' => $name
+                ]);
+                // echo $file;
+            }
+            return response()->json(['status' => 'ok', 'name' => $file_path], 200);
+        }
+        return;
+    }
+    public function uploadSlide(Request $request)
+    {
+        if ($request->images) {
+            $uploadedFiles = $request->images;
+            foreach ($uploadedFiles as $file) {
+                $name = $file->getClientOriginalName();
+                $pathFile = 'slide/';
+                $file_name = time() . '_' . $file->getClientOriginalName();
+                $file_path = $file->storeAs($pathFile, $file_name, 'public');
+
+                $resFile = FileUpload::create([
+                    'id_content' => 0,
+                    'type' => 'slide',
+                    'url' => $file_path,
+                    'name' => $name
+                ]);
+                // echo $file;
+            }
+            return response()->json(['status' => 'ok', 'name' => $file_path], 200);
+        }
+        return;
+    }
     
 }

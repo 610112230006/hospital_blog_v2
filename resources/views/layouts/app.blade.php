@@ -8,13 +8,20 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>กลุ่มคุ้มครองจริยธรรม กฎหมายและวินัย กรมการแพทย์</title>
+    <link rel="icon" href="images/logos/MOPH.png" />
 
+
+    @stack('styles')
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <link href="{{ asset('css/plugins.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Prompt:wght@300&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -25,6 +32,28 @@
         crossorigin=""></script>
         
     <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <style>
+        .navbar-nav li:hover>ul.dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu>.dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -6px;
+        }
+
+        /* rotate caret on hover */
+        .dropdown-menu>li>a:hover:after {
+            text-decoration: underline;
+            transform: rotate(-90deg);
+        }
+
+    </style>
 </head>
 
 <body>
@@ -43,9 +72,9 @@
     </div>
     @stack('js')
     <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/plugins.js') }}"></script>
+    
     <!--Template functions-->
-    <script src="{{ asset('js/functions.js') }}"></script>
+    
 </body>
 
 </html>

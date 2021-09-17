@@ -5,7 +5,7 @@
                 <ul class="top-menu">
                     <li>
                         <a>โทรศัพท์ 0-2590-6157 , 0-2590-6159/ E-mail
-                            : team.winai2020@gmail.com</a>
+                            : law.dms@dms.mail.go.th</a>
 
                     </li>
 
@@ -14,11 +14,17 @@
             <div class="col-md-3 d-none d-sm-block">
                 <div class="social-icons social-icons-colored-hover">
                     <ul>
+                        <li style="background-color: red">
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </li>
                         <li style="background-color: blue">
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
                         </li>
                         <li style="background-color: green">
                             <a href="#"><i class="fab fa-line"></i></a>
+                        </li>
+                        <li>
+                            <a href="#">TH</a>
                         </li>
                     </ul>
                 </div>
@@ -26,132 +32,417 @@
         </div>
     </div>
 </div>
-<header id="header" data-fullwidth="true">
-    <div class="header-inner">
-        <div class="container">
-            <!--Logo-->
-            <div id="logo"> <a href="/"><span class="logo-default"><img src="images/logos/logo-moph.png" alt=""
-                            height="30" width="100%" srcset=""></span><span class="logo-dark">POLO</span></a>
-            </div>
-            <!--End: Logo-->
-            <!-- Search -->
-            <div id="search"><a id="btn-search-close" class="btn-search-close" aria-label="Close search form"><i
-                        class="icon-x"></i></a>
-                <form class="search-form" action="search-results-page.html" method="get">
-                    <input class="form-control" name="q" type="text" placeholder="Type & Search..." />
-                    <span class="text-muted">Start typing & press "Enter" or "ESC" to close</span>
-                </form>
-            </div>
-            <!-- end: search -->
-            <!--Header Extras-->
-            <div class="header-extras">
-                <ul>
-                    @guest
+<nav class="navbar navbar-expand-md shadow-sm navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand pb-2" href="/"><img src="images/logos/logo-moph.png" height="50" width="200" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <ul>
+                        <a class="text-dark" href="/">หน้าแรก</a>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <ul>
+                        <a class="text-dark" href="content-by-cate?id_cate=7">เกี่ยวกับเรา</a>
+                        <i class="icon-chevron-down"><span class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </span></i>
+                    </ul>
+
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li>
-
-                            <a href="{{ route('login') }}"> <i class="icon-log-in"></i></a>
-
-
+                            <a class="dropdown-item" href="content-by-subcate?id_subcate=5">อํานาจหน้าที่</a>
                         </li>
-                    @else
-                        <div class="p-dropdown">
-                            <a class="btn btn-light btn-shadow btn-rounded btn-icon"><i class="icon-user"></i></a>
-                            <div class="p-dropdown-content">
-                                <div class="widget-myaccount">
-                                    <div class="d-block">
-                                        <img class="avatar avatar-lg" src="images/avatar.jpeg">
-                                    </div>
-                                    <span>{{ Auth::user()->f_name }}&nbsp;{{ Auth::user()->l_name }}</span>
-                                    <ul class="text-center">
-                                        <li><a href="user-edit-personal"><i
-                                                    class="icon-user"></i>แก้ไขข้อมูลส่วนตัว</a></li>
-                                        <li><a href="{{ route('logout') }}"
-                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                <i class="icon-log-out"></i>ออกจากระบบ</a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                class="d-none">
-                                                @csrf
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    @endguest
+                        <li>
+                            <a class="dropdown-item" href="content-by-subcate?id_subcate=6">วิสัยทัศน์ พันธกิจ</a>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">โครงสร้างกลุ่ม
+                                <i class="icon-chevron-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="content-by-subcate?id_subcate=13">งานกฎหมาย นิติกรรม
+                                        และคดี</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="content-by-subcate?id_subcate=14">งานสอบสวน วินัย
+                                        และความ
+                                        รับผิดทางละเมิด
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=15">งานคุ้มครองจริยธรรม</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">งบประมาณ<i
+                                    class="icon-chevron-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="content-by-subcate?id_subcate=10">โครงการ</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=11">แผนการจัดซื้อจัดจ้าง
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=12">รายงานจัดซื้อจัดจ้าง</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="content-by-subcate?id_subcate=16">Happy DMS</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="content-by-subcate?id_subcate=17">ปฏิทินกิจกรรม</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <ul>
+                        <a class="text-dark" href="content-by-cate?id_cate=1">งานกฎหมาย</a>
+                        <i class="icon-chevron-down"><span class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </span></i>
+                    </ul>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="content-by-subcate?id_subcate=18">กฎหมายที่เกี่ยวข้อง</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="content-by-subcate?id_subcate=19">มอบอำนาจ</a>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">กฎหมายการแพทย์
+                                <i class="icon-chevron-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="content-by-subcate?id_subcate=2">กฎหมาย COVID-19</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="content-by-subcate?id_subcate=20">แรงงานทางทะเล
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=22">การจัดการนวัตกรรมทางการแพทย์</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">นิติกรรมและสัญญา
+                                <i class="icon-chevron-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=23">กฎหมายระเบียบการลาศึกษาฝึกอบรม</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="">กฎหมาย ระเบียบพัสดุ</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=25">หนังสือเวียนเกี่ยวกับนิตกิรรมและสัญญา</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="content-by-subcate?id_subcate=26">ตัวอย่างสัญญา</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="content-by-subcate?id_subcate=27">MOU กรมการแพทย์</a>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">คดี <i class="icon-chevron-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="content-by-subcate?id_subcate=28">สถิติคดี</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=29">หนังสือเวียนเกี่ยวกับคดี</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="">การแจ้งความดําเนินคดี</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=30">ตัวอย่างแบบฟอร์ม</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="content-by-subcate?id_subcate=31">ตอบข้อหารือ /
+                                ให้ความเห็น</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="content-by-subcate?id_subcate=32">การอบรม</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="content-by-subcate?id_subcate=33">รวมคําพิพากษา</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <ul>
+                        <a class="text-dark" href="content-by-cate?id_cate=2">งานวินัย/ละเมิด</a>
+                        <i class="icon-chevron-down"><span class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </span></i>
+                    </ul>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">วินัย <i
+                                    class="icon-chevron-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=3">กฎหมายที่เกี่ยวข้อง</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=34">คู่มือการดําเนินการทางวินัย
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="content-by-subcate?id_subcate=35">แนวทางการลงโทษ</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=36">สถิติิการดําเนินการทางวินัย</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">อุทธรณ์ <i
+                                    class="icon-chevron-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=37">กฎหมายที่เกี่ยวข้อง</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">ร้องทุกข์ <i
+                                    class="icon-chevron-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=38">กฎหมายที่เกี่ยวข้อง</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">ความรับผิดทางละเมิด
+                                <i class="icon-chevron-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=39">กฎหมายที่เกี่ยวข้อง</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=40">คําวินิจฉัยความรับผิดทางละเมิด</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">แนวทางเสริมสร้างวินัย
+                                <i class="icon-chevron-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="content-by-subcate?id_subcate=41">หนังสือ ก.พ.</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=42">สื่อเสริมสร้างวินัย</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="content-by-subcate?id_subcate=43">ตอบข้อหารือ /
+                                ให้ความเห็น</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="content-by-subcate?id_subcate=44">การอบรม</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="content-by-subcate?id_subcate=45">รวมคําพิพากษา</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item"
+                                href="content-by-subcate?id_subcate=46">บทความที่น่าสนใจ-ตอบข้อหารือ</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <ul>
+                        <a class="text-dark" href="content-by-cate?id_cate=3">งานคุ้มครองจริยธรรม</a>
+                        <i class="icon-chevron-down"><span class="nav-link dropdown-toggle"
+                                id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"> </span></i>
+                    </ul>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Anti Corruption
+                                <i class="icon-chevron-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=47">การจัดการความเสี่ยงด้านทุจริต</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=48">มาตรการป้องกันการทุจริต
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=49">การจัดการผลประโยชน์ทับซ้อน</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle"
+                                href="content-by-subcate?id_subcate=50">แผนปฏิบัติราชการ
+                                <i class="icon-chevron-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="content-by-subcate?id_subcate=50">2564
+                                        (ชาติ–กระทรวง–กรม รายละเอียด
+                                        การรายงานผล)</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle"
+                                href="content-by-subcate?id_subcate=51">โครงการส่งเสริมคุณธรรมปัองกัน
+                                และปราบปรามการทุจริต
+                                <i class="icon-chevron-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="content-by-subcate?id_subcate=51">2564
+                                        (รายละเอียด–รายงานผล)</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="content-by-subcate?id_subcate=52">ITA <i
+                                    class="icon-chevron-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="content-by-subcate?id_subcate=52">2564
+                                        (รายละเอียด–การ
+                                        ดําเนินงาน–ผล)</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item"
+                                href="content-by-subcate?id_subcate=53">คํารับรองการปฏิบัติราชการ</a>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle"
+                                href="content-by-subcate?id_subcate=54">คุ้มครองจริยธรรม
+                                <i class="icon-chevron-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=61">การดําเนินงานของคณะกรรมการจริยธรรม</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=62">ประมวลจริยธรรม</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=63">ข้อกําหนดจริยธรรม</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=64">ธรรมาภิบาล(เปิดเผยข้อมูล)</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="content-by-subcate?id_subcate=65">องค์กรคุณธรรม</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="content-by-subcate?id_subcate=66">องค์กรต้นแบบด้านสิทธิมนุษยชน</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="content-by-subcate?id_subcate=">ความเสมอภาค
+                                        หญิง-ชาย</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item " href="content-by-subcate?id_subcate=55">สื่อเผยแพร่</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="content-by-subcate?id_subcate=56">การประชุม อบรม</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <ul>
+                        <a class="text-dark" href="content-by-cate?id_cate=4">ร้องเรียน/ร้องทุกข์</a>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <ul>
+                        <a class="text-dark" href="contact">ติดต่อเรา</a>
+                    </ul>
+                </li>
 
 
+            </ul>
+
+
+
+            @guest
+                <ul class="navbar-nav p-3">
+                    <li class="nav-item">
+                        <a class="text-center" href="/login">
+                            <i class="fa fa-key">
+
+                            </i>
+                        </a>
+
+                    </li>
                 </ul>
 
 
-            </div>
-            <!--end: Header Extras-->
-            <!--Navigation Resposnive Trigger-->
-            <div id="mainMenu-trigger">
-                <a class="lines-button x"><span class="lines"></span></a>
-            </div>
-            <!--end: Navigation Resposnive Trigger-->
-            <!--Navigation-->
-           
-            <menu-component></menu-component>
-            <!--end: Navigation-->
+            @else
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                        data-toggle="dropdown" aria-expanded="false">
+                        <i class="icon-user"></i>
+                        <i class="icon-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li>
+                            <a class="dropdown-item" href="/user-edit-personal">จัดการบัญชีผู้ใช้</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider" />
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="logoutt">ออกจากระบบ</a>
+                        </li>
+                    </ul>
+                </li>
+
+            @endguest
+
+
         </div>
     </div>
-</header>
-<!-- end: Header -->
-
-
-{{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
-
-            </ul>
-
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Authentication Links -->
-                @guest
-                    @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                    @endif
-
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
-                @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                @endguest
-            </ul>
-        </div>
-    </div>
-</nav> --}}
+</nav>
